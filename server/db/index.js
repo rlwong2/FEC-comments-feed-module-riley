@@ -1,37 +1,95 @@
-var knex = require('knex')({
-  client: 'mysql',
-  connection: {
-    host : '127.0.0.1',
-    user : 'root',
-    database : 'FEC-comments'
-  }
+var Sequelize = require('sequelize');
+var db = new Sequelize('FEC-comments', 'root', '');
+
+var Comments = db.define('Comments', {
+  id: Sequelize.INTEGER,
+  user_id: Sequelize.STRING,
+  user_name: Sequelize.STRING,
+  text: Sequelize.STRING,
+  created_at: Sequelize.DATE,
+  track_location: Sequelize.INTEGER,
+  original_comment_id: Sequelize.INTEGER,
 });
 
-knex.schema.createTable('comments', function (table) {
-  table.increments('comment_id').primary();
-  table.string('comment_user_id');
-  table.string('comment_user_name');
-  table.text('comment_body');
-  table.timestamp('created_at').defaultTo(knex.fn.now());
-  table.string('comment_track_location');
-  table.integer('original_comment_id');
-})
+var Artist = db.define('Artist', {
+  id: Sequelize.INTEGER,
+  name: Sequelize.STRING,
+  followers_count: Sequelize.INTEGER,
+  tracks_count: Sequelize.INTEGER
+});
 
-knex.schema.createTable('artist', function (table) {
-  table.increments('artist_id').primary();
-  table.string('artist_name');
-  table.integer('artist_followers_count');
-  table.integer('artist_tracks_count');
-})
+var Song = db.define('Song', {
+  id: Sequelize.INTEGER,
+  artist_id: Sequelize.INTEGER,
+  title: Sequelize.STRING,
+  play_count: Sequelize.INTEGER,
+  likes_count: Sequelize.INTEGER,
+  repost_count: Sequelize.INTEGER,
+  description: Sequelize.STRING,
+  hashtags: Sequelize.STRING
+});
 
-knex.schema.createTable('song', function (table) {
-  table.increments('song_id').primary();
-  table.integer('song_play_count');
-  table.integer('song_likes_count');
-  table.integer('song_repost_count');
-  table.text('description');
-  table.json('hashtags');
-})
+Song.belongsTo(Artist);
+Artist.hasMany(Song);
+
+Comments.sync();
+Artist.sync();
+Song.sync();
+
+exports.Comments = Comments;
+exports.Artist = Artist;
+exports.Song = Song;
+
+// var knex = require('knex')({
+//   client: 'mysql',
+//   connection: {
+//     host : '127.0.0.1',
+//     user : 'root',
+//     database : 'FEC-comments'
+//   }
+// });
+
+// var init = function() {
+//   console.log('Running db init')
+//   knex.schema.createTable('comments', function (table) {
+//     table.increments('comment_id').primary();
+//     table.string('comment_user_id');
+//     table.string('comment_user_name');
+//     table.text('comment_body');
+//     table.timestamp('created_at').defaultTo(knex.fn.now());
+//     table.string('comment_track_location');
+//     table.integer('original_comment_id');
+//   })
+//   .then((result) => {
+//     console.log(result);
+//     knex.schema.createTable('artist', function (table) {
+//       table.increments('artist_id').primary();
+//       table.string('artist_name');
+//       table.integer('artist_followers_count');
+//       table.integer('artist_tracks_count');
+//     })
+//   })
+//   .then((result) => {
+//     console.log(result);
+//     knex.schema.createTable('song', function (table) {
+//       table.increments('song_id').primary();
+//       table.integer('song_artist_id');
+//       table.integer('song_play_count');
+//       table.integer('song_likes_count');
+//       table.integer('song_repost_count');
+//       table.text('description');
+//       table.json('hashtags');
+//     })
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   })
+// }
+
+// init();
+
+// module.exports.knex = knex;
+// module.exports.init = init;
 
 // Schema
 // Comments Feed
