@@ -3,22 +3,29 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
 const $ = require('jquery');
+const router = require('./router.js');
 
 let app = express();
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
-app.use(bodyParser.text());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use('/', router);
 
 app.get('/song', (req, res, next) => {
 
-})
+});
 
 app.get('/artist', (req, res, next) => {
 
-})
+});
 
 app.get('/comments', (req, res, next) => {
+
+});
+
+app.post('/comments', (req, res, next) => {
 
 })
 

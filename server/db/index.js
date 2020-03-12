@@ -1,25 +1,36 @@
-var Sequelize = require('sequelize');
-var db = new Sequelize('FEC-comments', 'root', '');
+const Sequelize = require('sequelize');
+const db = new Sequelize('FEC_comments_module', 'root', '', {
+  dialect: 'mysql'
+});
 
 var Comments = db.define('Comments', {
-  id: Sequelize.INTEGER,
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    allowNull: false
+  },
   user_id: Sequelize.STRING,
   user_name: Sequelize.STRING,
   text: Sequelize.STRING,
-  created_at: Sequelize.DATE,
   track_location: Sequelize.INTEGER,
   original_comment_id: Sequelize.INTEGER,
 });
 
 var Artist = db.define('Artist', {
-  id: Sequelize.INTEGER,
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
   name: Sequelize.STRING,
   followers_count: Sequelize.INTEGER,
   tracks_count: Sequelize.INTEGER
 });
 
 var Song = db.define('Song', {
-  id: Sequelize.INTEGER,
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
   artist_id: Sequelize.INTEGER,
   title: Sequelize.STRING,
   play_count: Sequelize.INTEGER,
