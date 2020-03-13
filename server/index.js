@@ -7,27 +7,13 @@ const router = require('./router.js');
 
 let app = express();
 
+// Serve up static html
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Router
 app.use('/', router);
-
-app.get('/song', (req, res, next) => {
-
-});
-
-app.get('/artist', (req, res, next) => {
-
-});
-
-app.get('/comments', (req, res, next) => {
-
-});
-
-app.post('/comments', (req, res, next) => {
-
-})
 
 let port = 3000;
 
