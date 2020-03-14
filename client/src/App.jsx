@@ -7,9 +7,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      artist = {},
-      song = {},
-      comments = []
+      artist: {},
+      song: {},
+      comments: []
     }
   }
 
