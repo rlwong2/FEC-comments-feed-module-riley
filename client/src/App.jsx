@@ -13,6 +13,24 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.getSong();
+    this.getArtist();
+    this.getComments();
+  }
+
+  getSong() {
+
+  }
+
+  getArtist() {
+
+  }
+
+  getComments() {
+
+  }
+
   render() {
     return (<div>
       <Artist />
