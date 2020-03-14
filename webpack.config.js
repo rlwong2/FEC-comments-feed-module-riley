@@ -1,7 +1,6 @@
 var path = require('path');
 var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, '/client/dist');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: `${SRC_DIR}/app.jsx`,
@@ -20,14 +19,6 @@ module.exports = {
             presets: ['@babel/preset-react']
           }
         }
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader"
-          }
-        ]
       }
     ]
   }
