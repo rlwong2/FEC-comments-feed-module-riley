@@ -2,12 +2,14 @@
   "name": "FEC-comments-feed-module-riley",
   "version": "1.0.0",
   "description": "",
-  "main": "config.js",
+  "private": true,
+  "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js",
+    "start": "webpack-dev-server --open --mode development",
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js"
+    "server-dev": "nodemon server/index.js",
+    "build": "webpack --mode production"
   },
   "author": "Riley Wong",
   "license": "ISC",
@@ -16,6 +18,7 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
+    "html-loader": "^0.5.5",
     "webpack": "^4.42.0"
   },
   "dependencies": {
@@ -25,7 +28,6 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
-    "inspector": "^0.5.0",
     "jquery": "^3.4.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
@@ -33,9 +35,8 @@
     "path": "^0.12.7",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "request": "^2.88.2",
     "sequelize": "^5.21.5",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev": "^1.1.1"
+    "styled-components": "^5.0.1",
+    "webpack-cli": "^3.3.11"
   }
 }
