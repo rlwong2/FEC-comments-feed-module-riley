@@ -4,10 +4,9 @@ FEC-Group-Zelda
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/team-ganon/
+  - https://github.com/FEC-Group-Link
+  - https://github.com/Navi-n-B
 
 ## Table of Contents
 

@@ -31,6 +31,7 @@ var Song = db.define('Song', {
     type: Sequelize.INTEGER,
     primaryKey: true
   },
+  url: Sequelize.STRING,
   artist_id: Sequelize.INTEGER,
   title: Sequelize.STRING,
   play_count: Sequelize.INTEGER,
