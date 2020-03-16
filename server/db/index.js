@@ -6,8 +6,8 @@ const db = new Sequelize('FEC_comments_module', 'root', '', {
 var Comments = db.define('Comments', {
   id: {
     type: Sequelize.INTEGER,
-    primaryKey: true,
-    allowNull: false
+    autoIncrement: true,
+    primaryKey: true
   },
   user_id: Sequelize.STRING,
   user_name: Sequelize.STRING,
@@ -21,6 +21,7 @@ var Comments = db.define('Comments', {
 var Artist = db.define('Artist', {
   id: {
     type: Sequelize.INTEGER,
+    autoIncrement: true,
     primaryKey: true
   },
   name: Sequelize.STRING,
@@ -32,9 +33,9 @@ var Artist = db.define('Artist', {
 var Song = db.define('Song', {
   id: {
     type: Sequelize.INTEGER,
+    autoIncrement: true,
     primaryKey: true
   },
-  url: Sequelize.STRING,
   artist_id: Sequelize.INTEGER,
   title: Sequelize.STRING,
   play_count: Sequelize.INTEGER,
