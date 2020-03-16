@@ -5,9 +5,11 @@ const fs = require('fs');
 const $ = require('jquery');
 const cliProgress = require('cli-progress');
 let n = 1; // how many pictures?
+const axios = require('axios');
+const Promise = require('bluebird');
+const config = require('../config/config.js');
 
 // setup progress bar
-
 const b1 = new cliProgress.SingleBar({
   format: 'Progress |' + _colors.cyan('{bar}') + '| {percentage}% || {value}/{total} Chunks || Speed: {speed}',
   barCompleteChar: '\u2588',
@@ -15,22 +17,13 @@ const b1 = new cliProgress.SingleBar({
   hideCursor: true
 });
 
-b1.start(n, 0, {
-  speed: "N/A"
-});
-
-// Download 100 profile pics
-
-
-// Upload to s3
-const ID = 'AKIAIFYG46ECG53WG5VA';
-const SECRET = 'UEmgqixBIDsAa6nY3Pft0XeVMH1cezmxju1uaul/';
+// setup s3
 const BUCKET_NAME = 'fec-comments-images';
 let imageName = faker.image.avatar();
 
 const s3 = new AWS.S3({
-  accessKeyId: ID,
-  secretAccessKey: SECRET
+  accessKeyId: config.ID,
+  secretAccessKey: config.SECRET
 });
 
 const uploadFile = (fileName) => {
@@ -53,7 +46,24 @@ const uploadFile = (fileName) => {
   });
 };
 
+// start progress bar
+b1.start(n, 0, {
+  speed: "N/A"
+});
+
+// Download 100 profile pics
+axios.get('https://randomuser.me/api/?inc=name,picture')
+  .then((fakeUsers) => {
+    console.log(fakeUsers)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+
+// Upload to s3
+
 // Seed Comments
+
 
 // Seed Artist
 db.Artist.create({
