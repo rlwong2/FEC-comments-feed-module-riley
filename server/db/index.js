@@ -11,6 +11,8 @@ var Comments = db.define('Comments', {
   },
   user_id: Sequelize.STRING,
   user_name: Sequelize.STRING,
+  user_followers_count: Sequelize.INTEGER,
+  user_profile_pic: Sequelize.STRING,
   text: Sequelize.STRING,
   track_location: Sequelize.INTEGER,
   original_comment_id: Sequelize.INTEGER,
@@ -23,7 +25,8 @@ var Artist = db.define('Artist', {
   },
   name: Sequelize.STRING,
   followers_count: Sequelize.INTEGER,
-  tracks_count: Sequelize.INTEGER
+  tracks_count: Sequelize.INTEGER,
+  profile_pic: Sequelize.STRING
 });
 
 var Song = db.define('Song', {
@@ -38,6 +41,10 @@ var Song = db.define('Song', {
   likes_count: Sequelize.INTEGER,
   repost_count: Sequelize.INTEGER,
   description: Sequelize.STRING,
+  released_by: Sequelize.STRING,
+  release_date: Sequelize.STRING,
+  p_line: Sequelize.STRING,
+  c_line: Sequelize.STRING,
   hashtags: Sequelize.STRING
 });
 
