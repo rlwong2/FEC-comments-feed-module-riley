@@ -6,11 +6,13 @@ const db = new Sequelize('FEC_comments_module', 'root', '', {
 var Comments = db.define('Comments', {
   id: {
     type: Sequelize.INTEGER,
-    primaryKey: true,
-    allowNull: false
+    autoIncrement: true,
+    primaryKey: true
   },
   user_id: Sequelize.STRING,
   user_name: Sequelize.STRING,
+  user_followers_count: Sequelize.INTEGER,
+  user_profile_pic: Sequelize.STRING,
   text: Sequelize.STRING,
   track_location: Sequelize.INTEGER,
   original_comment_id: Sequelize.INTEGER,
@@ -19,25 +21,31 @@ var Comments = db.define('Comments', {
 var Artist = db.define('Artist', {
   id: {
     type: Sequelize.INTEGER,
+    autoIncrement: true,
     primaryKey: true
   },
   name: Sequelize.STRING,
   followers_count: Sequelize.INTEGER,
-  tracks_count: Sequelize.INTEGER
+  tracks_count: Sequelize.INTEGER,
+  profile_pic: Sequelize.STRING
 });
 
 var Song = db.define('Song', {
   id: {
     type: Sequelize.INTEGER,
+    autoIncrement: true,
     primaryKey: true
   },
-  url: Sequelize.STRING,
   artist_id: Sequelize.INTEGER,
   title: Sequelize.STRING,
   play_count: Sequelize.INTEGER,
   likes_count: Sequelize.INTEGER,
   repost_count: Sequelize.INTEGER,
   description: Sequelize.STRING,
+  released_by: Sequelize.STRING,
+  release_date: Sequelize.STRING,
+  p_line: Sequelize.STRING,
+  c_line: Sequelize.STRING,
   hashtags: Sequelize.STRING
 });
 
