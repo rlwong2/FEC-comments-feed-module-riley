@@ -16,6 +16,8 @@ var Comments = db.define('Comments', {
   text: Sequelize.STRING,
   track_location: Sequelize.INTEGER,
   original_comment_id: Sequelize.INTEGER,
+},{
+  timestamps: true
 });
 
 var Artist = db.define('Artist', {
@@ -24,10 +26,12 @@ var Artist = db.define('Artist', {
     autoIncrement: true,
     primaryKey: true
   },
-  name: Sequelize.STRING,
+  name: { type: Sequelize.STRING, unique: true },
   followers_count: Sequelize.INTEGER,
   tracks_count: Sequelize.INTEGER,
   profile_pic: Sequelize.STRING
+},{
+  freezeTableName: true
 });
 
 var Song = db.define('Song', {
@@ -47,6 +51,8 @@ var Song = db.define('Song', {
   p_line: Sequelize.STRING,
   c_line: Sequelize.STRING,
   hashtags: Sequelize.STRING
+},{
+  freezeTableName: true
 });
 
 Song.belongsTo(Artist);

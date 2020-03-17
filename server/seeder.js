@@ -55,12 +55,12 @@ let superSeed = function () {
     speed: "N/A"
   });
 
-  db.Comments.sync();
-  db.Artist.sync();
-  db.Song.sync();
+  // db.Comments.sync();
+  // db.Artist.sync();
+  // db.Song.sync();
 
   // Download 100 profile pics
-  console.log('Get randomuser from API');
+
   let fakeUser = {};
   fakeUser.user_followers_count = Math.random() * 100;
   fakeUser.trackLoc = moment.utc(Math.random() * 235).format('mm:ss');
@@ -68,33 +68,36 @@ let superSeed = function () {
   // Generate random user from API
   axios.get('https://randomuser.me/api/?inc=name,id,picture')
     .then((obj) => {
-      console.log(obj.data.results)
-      let output = obj.data.results;
-      fakeUser.user_name = `${output.name.first} ${output.name.last}`;
-      fakeUser.user_id = output.id.value;
-      fakeUser.user_profile_pic = output.picture.thumbnail;
+      // console.log(obj.data.results)
+      // let output = obj.data.results;
+      fakeUser.user_name = `${output[0].name.first} ${output.name.last}`;
+      fakeUser.user_id = output[0].id.value;
+      fakeUser.user_profile_pic = output[0].picture.thumbnail;
+      console.log('fakeUser: ', fakeUser);
     })
     .catch((err) => {
-      console.log(err)
+      // console.log('Error: randomuser get')
+      throw new Error('Randomuser failed')
     })
 
     // Generate hipster ipsum
-    .then(axios.get('https://hipsum.co/api/?type=hipster-centric&sentences=1'))
+  axios.get('https://hipsum.co/api/?type=hipster-centric&sentences=1')
     .then((hipsterString) => {
-      fakeUser.text = hipsterString;
+      fakeUser.text = hipsterString.data[0];
+      console.log(hipsterString.data[0]);
     })
     .catch((err) => {
-      console.log(err)
+      console.log('Error: hipsum', err)
     })
     // Upload to s3
 
     // Seed Comments
     .then(db.Comments.create(fakeUser))
     .then((result) => {
-      console.log('Success: Created Comments Insert')
+      console.log('Success: Created Comments Table');
     })
     .catch((err) => {
-      console.log('Error: Comments Table', err)
+      console.log('Error: Comments Table', err);
     })
 
     // Seed Artist
@@ -113,9 +116,9 @@ let superSeed = function () {
 
     // Seed Song
     .then(db.Artist.findOrCreate({ where: { name: 'the1975' } })
-      .spread((user, created) => {
+      .spread((artist, created) => {
         db.Song.create({
-          artist_id: Artist.get('id'),
+          artist_id: artist.get('id'),
           title: 'Frail State of Mind',
           play_count: 16543,
           likes_count: 368,
@@ -130,7 +133,7 @@ let superSeed = function () {
       })
     )
     .then((message) => {
-      console.log(message);
+      console.log('Success: Created Song Table');
     })
     // update progress bar
     .then(b1.update(1))
