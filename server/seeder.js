@@ -1,7 +1,19 @@
 const faker = require('faker');
 const moment = require('moment');
 const axios = require('axios');
+const cliProgress = require('cli-progress');
+const _colors = require('colors');
+
 const db = require('./db');
+
+// setup progress bar
+// const b1 = new cliProgress.SingleBar({
+//   format: 'Progress |' + _colors.cyan('{bar}') + '| {percentage}% || {value}/{total} Chunks || Speed: {speed}',
+//   barCompleteChar: '\u2588',
+//   barIncompleteChar: '\u2591',
+//   hideCursor: true
+// });
+
 
 let fakeArtist = function () {
     db.Artist.create({
@@ -21,6 +33,7 @@ let fakeArtist = function () {
 let fakeSong = function() {
   db.Artist.findOrCreate({ where: { name: 'the1975' } })
   .spread((artist, created) => {
+    console.log(artist)
     db.Song.create({
       artist_id: artist.id,
       title: 'Frail State of Mind',
@@ -54,20 +67,26 @@ async function fakeCommentAsync (string) {
     user_id: faker.random.uuid(),
     user_name: faker.internet.userName(),
     user_profile_pic: faker.internet.avatar(),
-    // text = faker.lorem.sentence(),
-    text: string.join(''),
+    text: faker.lorem.sentence(),
     user_followers_count: Math.floor(Math.random() * 100),
     track_location: moment.utc(Math.floor(Math.random() * 235000)).format('mm:ss'),
     original_comment_id: null
   }
-  console.log(fakeCommentBlock)
+  // console.log(fakeCommentBlock)
   return fakeCommentBlock;
 }
 
+// async function getHipsum () {
+//   axios.get('https://hipsum.co/api/?type=hipster-centric&sentences=100')
+//   .then((sentences) => {
+//     return sentences.data.join('').split('.')
+//   })
+// }
+
 let fakeComment = function () {
 
-  axios.get('https://hipsum.co/api/?type=hipster-centric&sentences=1')
-  .then((hipsum) => {return fakeCommentAsync(hipsum.data)})
+  fakeCommentAsync()
+  // fakeCommentAsync(hipsum.data)
   .then((obj) => {
     db.Comments.create(obj)
   })
@@ -78,15 +97,23 @@ let fakeComment = function () {
   .catch((err) => {
     console.log('Error: Comments Table', err);
   })
-  .finally(() => {
-    console.log('Finished: fakeComment')
-  })
+
 }
 
-fakeSong()
+// Run Generator
+
+// start progress bar
+// let lorem = '';
+// getHipsum()
+// .then((result) => console.log(result))
+
 fakeArtist()
+fakeSong()
+
 let n = 0
-while(n > 100) {
+while(n < 100) {
   fakeComment();
   n++;
 }
+
+// end generator

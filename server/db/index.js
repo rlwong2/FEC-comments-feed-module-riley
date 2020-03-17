@@ -55,12 +55,13 @@ var Song = db.define('Song', {
   freezeTableName: true
 });
 
-Song.belongsTo(Artist);
-Artist.hasMany(Song);
+// Song.belongsTo(Artist);
+// Artist.hasMany(Song);
 
-Comments.sync();
-Artist.sync();
-Song.sync();
+Artist.sync({ force: false });
+Song.sync({ force: false });
+Comments.sync({ force: false });
+
 
 exports.Comments = Comments;
 exports.Artist = Artist;
