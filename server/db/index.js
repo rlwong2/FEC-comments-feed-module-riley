@@ -14,7 +14,7 @@ var Comments = db.define('Comments', {
   user_followers_count: Sequelize.INTEGER,
   user_profile_pic: Sequelize.STRING,
   text: Sequelize.STRING,
-  track_location: Sequelize.INTEGER,
+  track_location: Sequelize.STRING,
   original_comment_id: Sequelize.INTEGER,
 },{
   timestamps: true
