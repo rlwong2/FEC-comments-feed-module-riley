@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
-const db = new Sequelize('FEC_comments_module', 'root', '', {
-  dialect: 'mysql'
+const db = new Sequelize('fec_comments_module', 'root', '', {
+  dialect: 'mysql',
+  logging: false
 });
 
 var Comments = db.define('Comments', {
@@ -60,56 +61,6 @@ exports.Comments = Comments;
 exports.Artist = Artist;
 exports.Song = Song;
 
-// var knex = require('knex')({
-//   client: 'mysql',
-//   connection: {
-//     host : '127.0.0.1',
-//     user : 'root',
-//     database : 'FEC-comments'
-//   }
-// });
-
-// var init = function() {
-//   console.log('Running db init')
-//   knex.schema.createTable('comments', function (table) {
-//     table.increments('comment_id').primary();
-//     table.string('comment_user_id');
-//     table.string('comment_user_name');
-//     table.text('comment_body');
-//     table.timestamp('created_at').defaultTo(knex.fn.now());
-//     table.string('comment_track_location');
-//     table.integer('original_comment_id');
-//   })
-//   .then((result) => {
-//     console.log(result);
-//     knex.schema.createTable('artist', function (table) {
-//       table.increments('artist_id').primary();
-//       table.string('artist_name');
-//       table.integer('artist_followers_count');
-//       table.integer('artist_tracks_count');
-//     })
-//   })
-//   .then((result) => {
-//     console.log(result);
-//     knex.schema.createTable('song', function (table) {
-//       table.increments('song_id').primary();
-//       table.integer('song_artist_id');
-//       table.integer('song_play_count');
-//       table.integer('song_likes_count');
-//       table.integer('song_repost_count');
-//       table.text('description');
-//       table.json('hashtags');
-//     })
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   })
-// }
-
-// init();
-
-// module.exports.knex = knex;
-// module.exports.init = init;
 
 // Schema
 // Comments Feed

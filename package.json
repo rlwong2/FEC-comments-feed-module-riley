@@ -10,7 +10,8 @@
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
     "build": "webpack --mode production",
-    "seed": "node server/seeder.js"
+    "seed": "node server/seeder.js",
+    "db-init": "node server/db/index.js"
   },
   "author": "Riley Wong",
   "license": "ISC",
@@ -19,6 +20,8 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "file-loader": "^6.0.0",
     "html-loader": "^0.5.5",
     "webpack": "^4.42.0"
   },
