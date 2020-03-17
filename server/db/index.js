@@ -14,8 +14,10 @@ var Comments = db.define('Comments', {
   user_followers_count: Sequelize.INTEGER,
   user_profile_pic: Sequelize.STRING,
   text: Sequelize.STRING,
-  track_location: Sequelize.INTEGER,
+  track_location: Sequelize.STRING,
   original_comment_id: Sequelize.INTEGER,
+},{
+  timestamps: true
 });
 
 var Artist = db.define('Artist', {
@@ -24,10 +26,12 @@ var Artist = db.define('Artist', {
     autoIncrement: true,
     primaryKey: true
   },
-  name: Sequelize.STRING,
+  name: { type: Sequelize.STRING, unique: true },
   followers_count: Sequelize.INTEGER,
   tracks_count: Sequelize.INTEGER,
   profile_pic: Sequelize.STRING
+},{
+  freezeTableName: true
 });
 
 var Song = db.define('Song', {
@@ -47,14 +51,17 @@ var Song = db.define('Song', {
   p_line: Sequelize.STRING,
   c_line: Sequelize.STRING,
   hashtags: Sequelize.STRING
+},{
+  freezeTableName: true
 });
 
-Song.belongsTo(Artist);
-Artist.hasMany(Song);
+// Song.belongsTo(Artist);
+// Artist.hasMany(Song);
 
-Comments.sync();
-Artist.sync();
-Song.sync();
+Artist.sync({ force: false });
+Song.sync({ force: false });
+Comments.sync({ force: false });
+
 
 exports.Comments = Comments;
 exports.Artist = Artist;
