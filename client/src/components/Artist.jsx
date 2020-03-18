@@ -4,7 +4,9 @@ import $ from 'jquery';
 import svg from 'react-inlinesvg';
 
 import img from '../the1975thumb.jpg';
-import addIcon from './person-add-outline.svg';
+import { IoMdPeople } from 'react-icons/io';
+import { MdPersonAdd, MdReportProblem } from 'react-icons/md';
+import { GiSoundWaves } from 'react-icons/gi';
 
 
 const ArtistPanel = styled.div`
@@ -46,7 +48,7 @@ const Followers = styled.div`
   width: 50%;
 `
 
-const Reposts = styled.div`
+const Tracks = styled.div`
   width: 50%;
 `
 const Follow = styled.button`
@@ -66,20 +68,31 @@ const Follow = styled.button`
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   font-weight: 100;
   text-align: center;
-  vertical-align: baseline;
+  vertical-align: center;
   box-sizing: border-box;
+`
+
+const Report = styled.div`
+  height: 22px;
+  text-align: left;
+  vertial-align: bottom;
+  font-size: 11px;
+  font-weight: 100;
+  margin-top: 30px;
+  padding: 0;
 `
 
 const Artist = (props) => (
   <ArtistPanel>
     <Avatar>
     </Avatar>
-    <ArtistName>the1975</ArtistName>
+    <ArtistName>{props.artist.name}</ArtistName>
     <ClickyBar>
-    <Followers>981K</Followers>
-    <Reposts>136</Reposts>
+    <Followers><IoMdPeople /> {props.artist.followers_count}</Followers>
+    <Tracks><GiSoundWaves /> {props.artist.tracks_count}</Tracks>
     </ClickyBar>
-    <Follow><svg src={addIcon} width="11px" height="11px" fill="#ffffff" stroke="#ffffff" viewBox="0 0 11 11" />Follow</Follow>
+    <Follow><MdPersonAdd />  Follow</Follow>
+    <Report><MdReportProblem /> Report</Report>
   </ArtistPanel>
 )
 

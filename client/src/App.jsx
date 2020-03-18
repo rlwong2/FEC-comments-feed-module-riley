@@ -8,10 +8,31 @@ import Song from './components/Song.jsx';
 import Comments from './components/Comments.jsx';
 
 const AppBody = styled.div`
+  width: 650px;
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   color: #333;
   margin: 20px;
   padding: 20px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+`
+
+const Left = styled.div`
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  margin: 0;
+  padding: 20px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+`
+
+const Right = styled.div`
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  margin: 0;
+  padding-left: 140px;
   display: block;
   position: absolute;
   top: 0;
@@ -48,8 +69,11 @@ class App extends React.Component {
     axios.get('http://localhost:3000/artist')
     .then((result) => {
       console.log(result)
+      let obj = result.data;
+      console.log(obj.followers_count)
+      obj.followers_count = obj.followers_count.toString().slice(0, -3).concat('K')
       this.setState({
-        artist: result.data
+        artist: obj
       })
     })
   }
@@ -66,9 +90,13 @@ class App extends React.Component {
 
   render() {
     return (<AppBody>
-      <Artist />
-      <Song />
-      <Comments />
+      <Left>
+        <Artist artist={this.state.artist} />
+      </Left>
+      <Right>
+        <Song song={this.state.song} />
+        <Comments comments={this.state.comments} />
+      </Right>
     </AppBody>)
   }
 }
