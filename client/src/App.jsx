@@ -8,13 +8,14 @@ import Song from './components/Song.jsx';
 import Comments from './components/Comments.jsx';
 
 const AppBody = styled.div`
-  overflow-y: scroll;
-  background: #f2f2f2;
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   color: #333;
-  margin: 0;
-  padding: 0;
+  margin: 20px;
+  padding: 20px;
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
 `
 
 class App extends React.Component {
