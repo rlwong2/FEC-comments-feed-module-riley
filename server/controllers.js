@@ -1,12 +1,41 @@
 const db = require('./db');
-const controller = require('./controllers');
 
 module.exports = {
+  song: {
+    get: function (req, res) {
+      db.Song.findOne()
+        .then(function(song) {
+          console.log(song)
+          res.json(song)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+
+  },
+
+  artist: {
+    get: (req, res) => {
+      db.Artist.findOne()
+        .then((artist) => {
+          res.json(artist)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+
+  },
+
   comments: {
     get: (req, res) => {
       db.Comments.findAll()
         .then(function(comments) {
           res.json(comments)
+        })
+        .catch((err) => {
+          console.log(err)
         })
     },
 
@@ -17,25 +46,6 @@ module.exports = {
           res.sendStatus(created ? 201: 200);
         })
     }
-  },
-
-  song: {
-    get: (req, res) => {
-      db.Song.findAll()
-        .then(function(song) {
-          res.json(song)
-        })
-    }
-
-  },
-
-  artist: {
-    get: (req, res) => {
-      db.artist.findAll()
-        .then(function(artist) {
-          res.json(artist)
-        })
-    }
-
   }
 };
+
