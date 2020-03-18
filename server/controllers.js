@@ -3,7 +3,7 @@ const db = require('./db');
 module.exports = {
   song: {
     get: function (req, res) {
-      db.Song.findAll()
+      db.Song.findOne()
         .then(function(song) {
           console.log(song)
           res.json(song)
@@ -17,7 +17,7 @@ module.exports = {
 
   artist: {
     get: (req, res) => {
-      db.Artist.findAll()
+      db.Artist.findOne()
         .then((artist) => {
           res.json(artist)
         })

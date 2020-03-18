@@ -32,7 +32,6 @@ class App extends React.Component {
     this.getSong();
     this.getArtist();
     this.getComments();
-    console.log(this.state)
   }
 
   getSong() {
