@@ -5,7 +5,7 @@ module.exports = {
     get: function (req, res) {
       db.Song.findOne()
         .then(function(song) {
-          console.log(song)
+          // console.log(song)
           res.json(song)
         })
         .catch((err) => {
