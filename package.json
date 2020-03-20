@@ -5,7 +5,7 @@
   "private": true,
   "main": "server/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --forceExit --detectOpenHandles",
     "start": "webpack-dev-server --open --mode development",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
@@ -20,6 +20,7 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "file-loader": "^6.0.0",
     "html-loader": "^0.5.5",
@@ -60,7 +61,9 @@
     "webpack-cli": "^3.3.11"
   },
   "jest": {
-    "setupFilesAfterEnv": ["jest-enzyme"],
+    "setupFilesAfterEnv": [
+      "jest-enzyme"
+    ],
     "testEnvironment": "enzyme"
   }
 }
