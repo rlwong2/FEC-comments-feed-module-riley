@@ -8,7 +8,7 @@ const Description = styled.div`
 `
 
 const Song = (props) => (
-  <Description>
+  <Description data-testid="description">
     <b>Release date: </b><br />
     {props.song.release_date}<br />
     <br />
