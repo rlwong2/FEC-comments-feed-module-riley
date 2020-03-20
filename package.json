@@ -24,7 +24,6 @@
     "file-loader": "^6.0.0",
     "html-loader": "^0.5.5",
     "react-inlinesvg": "^1.2.0",
-    "react-svg-loader": "^3.0.3",
     "svg-inline-loader": "^0.8.2",
     "webpack": "^4.42.0"
   },

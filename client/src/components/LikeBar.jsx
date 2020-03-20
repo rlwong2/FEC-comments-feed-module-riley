@@ -48,12 +48,14 @@ const InfoRight = styled.div`
 const Info = styled.p`
   font-size: 12px;
 `
+
 const InfoDiv = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
 `
+
 const Button = styled.div`
   display: flex;
   flex-direction: row;
