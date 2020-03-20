@@ -5266,7 +5266,7 @@
       "resolved": "https://registry.npmjs.org/is-stream/-/is-stream-1.1.0.tgz",
       "integrity": "sha1-EtSj3U5o4Lec6428hBc66A2RykQ="
     },
- 
+
     "is-string": {
       "version": "1.0.5",
       "resolved": "https://registry.npmjs.org/is-string/-/is-string-1.0.5.tgz",
@@ -12753,3 +12753,4 @@
     }
   }
 }
+
