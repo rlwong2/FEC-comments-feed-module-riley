@@ -30,15 +30,19 @@ const Avatar = styled.div`
 
 const ArtistName = styled.div`
   width: 100%;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 100;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  line-height: 1.3;
   margin: 6px 0 0;
+  cursor: pointer;
 `
 
 const ClickyBar = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  margin: 0;
+  margin: 5px;
   padding: 0;
   color: #999;
   font-size: 11px;
@@ -84,8 +88,7 @@ const Report = styled.div`
 
 const Artist = (props) => (
   <ArtistPanel>
-    <Avatar>
-    </Avatar>
+    <Avatar />
     <ArtistName>{props.artist.name}</ArtistName>
     <ClickyBar>
     <Followers><IoMdPeople /> {props.artist.followers_count}</Followers>
