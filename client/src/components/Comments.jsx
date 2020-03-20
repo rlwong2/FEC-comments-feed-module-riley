@@ -25,8 +25,7 @@ class Comments extends React.Component {
     super(props);
     this.state = {
       comments: [],
-      shownComments: {},
-
+      shownComments: [],
     }
   }
 
@@ -41,7 +40,7 @@ class Comments extends React.Component {
         <CommentFeed>
           {this.props.comments.map((comment) => {
             return (
-              <CommentBlock comment={comment} />
+              <CommentBlock key={comment.id} comment={comment} />
             )
           })}
         </CommentFeed>
