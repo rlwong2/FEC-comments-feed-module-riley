@@ -22,12 +22,6 @@ app.use('/', router);
 
 let port = process.env.NODE_ENV === 'test' ? 3001 : 3000;
 
-const server = app.listen(port, () => {console.log(`Now playing: ${port}`)});
+app.listen(port, () => {console.log(`Now playing: ${port}`)});
 
-process.on('SIGTERM', () => {
-  server.close(() => {
-    console.log('Process terminated')
-  })
-})
-
-module.exports = server;
+module.exports = app;

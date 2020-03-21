@@ -20,7 +20,7 @@
     }
   },
   "scripts": {
-    "test2": "jest --forceExit --detectOpenHandles",
+    "test2": "jest --forceExit --runInBand --detectOpenHandles",
     "test": "jest",
     "start": "webpack-dev-server --open --mode development",
     "react-dev": "webpack -d --watch",

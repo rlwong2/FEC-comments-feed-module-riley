@@ -1,37 +1,44 @@
 const axios = require('axios');
-const server = require('../server/index.js');
+const app = require('../server/index.js');
+const request = require('supertest');
 
-const api = axios.create({ baseURL: "http://localhost:3000/" });
-
+// const api = axios.create({ baseURL: "http://localhost:3000/" });
+let server;
 
 describe("Checks all the endpoints to the server", () => {
 
   beforeAll(() => {
     process.env.NODE_ENV = 'test';
-
+    // server = app.listen(3001, () => {
+    //   global.agent = request.agent(server);
+    //   done()
+    // })
   })
 
-  afterAll(() => {
+  afterAll(async (done) => {
+    // if (server) {
+    //   await server.close(done)
+    // }
   });
 
   test("/artist endpoint returns object with artist name", async (done) => {
-    const { data, status } = await api.get("/artist");
-    expect(status).toBe(200);
-    expect(data).toHaveProperty('name', 'the1975');
+    const res = await request(app).get("/artist");
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toHaveProperty('name', 'the1975');
     done();
   });
 
   test("/song endpoint returns object with song title", async (done) => {
-    const { data, status } = await api.get("/song");
-    expect(status).toBe(200);
-    expect(data).toHaveProperty('title', 'Frail State of Mind');
+    const res = await request(app).get("/song");
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toHaveProperty('title', 'Frail State of Mind');
     done();
   });
 
   test("/artist endpoint returns object", async (done) => {
-    const { data, status } = await api.get("/comments");
-    expect(status).toBe(200);
-    expect(data.length).toBeGreaterThanOrEqual(0);
+    const res = await request(app).get("/comments");
+    expect(res.statusCode).toBe(200);
+    expect(res.body.length).toBeGreaterThanOrEqual(0);
     done();
   });
 
@@ -40,8 +47,10 @@ describe("Checks all the endpoints to the server", () => {
       user_name: 'Jean Valjean',
       text: 'Bonjour, monsieur!'
     }
-    const { data, status } = await api.post("/comments", testComment);
-    expect(status).toBe(200);
+    const res = await request(app)
+      .post("/comments")
+      .send(testComment);
+    expect(res.statusCode).toBe(200);
     done();
   });
 
