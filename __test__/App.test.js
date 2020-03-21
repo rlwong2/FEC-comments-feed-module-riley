@@ -1,5 +1,5 @@
 import React from 'react';
-import App from '../client/src/App';
+import App from '../client/src/components/App.jsx';
 import renderer from 'react-test-renderer';
 // import { render } from '@testing-library/react';
 
@@ -15,8 +15,8 @@ describe('Test to check Jest', () => {
 });
 
 describe('Renders components in DOM', () => {
-  test('Renders comments', () => {
+  test('Renders comments', async () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.find(App)).to.have.lengthOf(1);
+    expect(wrapper.find(App)).toHaveLength(1);
   })
 });
