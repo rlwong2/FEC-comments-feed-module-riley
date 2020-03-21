@@ -16,9 +16,7 @@ describe("Checks all the endpoints to the server", () => {
   })
 
   afterAll(async (done) => {
-    // if (server) {
-    //   await server.close(done)
-    // }
+    app.killServer();
   });
 
   test("/artist endpoint returns object with artist name", async (done) => {
