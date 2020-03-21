@@ -1,5 +1,5 @@
 import React from 'react';
-import App from '../client/src/App.jsx';
+import App from '../client/src/App';
 import renderer from 'react-test-renderer';
 // import { render } from '@testing-library/react';
 
@@ -19,4 +19,4 @@ describe('Renders components in DOM', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.find(App)).to.have.lengthOf(1);
   })
-})
+});

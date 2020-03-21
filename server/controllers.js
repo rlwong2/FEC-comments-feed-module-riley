@@ -56,7 +56,7 @@ module.exports = {
     },
 
     post: (req, res) => {
-      console.log(req.body)
+      // console.log(req.body)
       let text = req.body.text;
       newComment(req.body)
         .then((obj) => {

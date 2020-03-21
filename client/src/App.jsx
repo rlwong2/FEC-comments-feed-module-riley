@@ -116,7 +116,7 @@ class App extends React.Component {
     .then((result) => {
       console.log(result)
       let obj = result.data;
-      console.log(obj.followers_count)
+      // console.log(obj.followers_count)
       obj.followers_count = obj.followers_count.toString().slice(0, -3).concat('K')
       this.setState({
         artist: obj
@@ -159,7 +159,7 @@ class App extends React.Component {
       }
       axios.post('/comments', newComment )
         .then((result) => {
-          console.log('Success: Posted comment')
+          // console.log('Success: Posted comment')
           this.getComments();
         })
         .catch((err) => {
