@@ -41,7 +41,6 @@
     "file-loader": "^6.0.0",
     "html-loader": "^0.5.5",
     "jest": "^25.1.0",
-    "jest-enzyme": "^7.1.2",
     "react-inlinesvg": "^1.2.0",
     "supertest": "^4.0.2",
     "svg-inline-loader": "^0.8.2",
