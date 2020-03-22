@@ -42,7 +42,7 @@ describe("Checks all the endpoints to the server", () => {
   test("/artist endpoint returns object", async (done) => {
     const res = await request(app).get("/comments");
     expect(res.statusCode).toBe(200);
-    expect(res.body.length).toBeGreaterThanOrEqual(0);
+    expect(res.body.length).toBeGreaterThanOrEqual(1);
     done();
   });
 

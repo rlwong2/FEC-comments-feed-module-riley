@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import $ from 'jquery';
 import svg from 'react-inlinesvg';
 
-import img from '../the1975thumb.jpg';
+// import img from '../the1975thumb.jpg';
 import { IoMdPeople } from 'react-icons/io';
 import { MdPersonAdd, MdReportProblem } from 'react-icons/md';
 import { GiSoundWaves } from 'react-icons/gi';
@@ -23,7 +23,7 @@ const Avatar = styled.div`
   height: 120px;
   border-radius: 50%;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
-  background-image: url(${img});
+  background-image: url('https://fec-comments-images.s3.us-east-2.amazonaws.com/the1975thumb.jpg');
   background-position: 50% 50%;
   background-size: cover;
 `
