@@ -4,7 +4,7 @@ const port = process.env.NODE_ENV === 'test' ? 3001 : 3000;
 
 const server = app.listen(port, () => {console.log(`Now playing: ${port}`)});
 
-app.killServer = () => {
+let killServer = () => {
   server.close();
 };
 

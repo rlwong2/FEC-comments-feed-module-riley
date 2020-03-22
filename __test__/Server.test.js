@@ -1,5 +1,5 @@
 // const axios = require('axios');
-const app = require('../server/index.js');
+const app = require('../server/);
 const supertest = require('supertest');
 const request = supertest(app);
 
