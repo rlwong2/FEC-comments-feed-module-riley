@@ -4,8 +4,24 @@
   "description": "",
   "private": true,
   "main": "server/index.js",
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "bower_components",
+      "shared"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/assetsTransformer.js",
+      "\\.(css|less)$": "<rootDir>/assetsTransformer.js"
+    }
+  },
   "scripts": {
-    "test": "jest --forceExit --detectOpenHandles",
+    "test2": "jest --forceExit --runInBand --detectOpenHandles",
+    "test": "jest",
     "start": "webpack-dev-server --open --mode development",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
@@ -25,9 +41,13 @@
     "file-loader": "^6.0.0",
     "html-loader": "^0.5.5",
     "jest": "^25.1.0",
+<<<<<<< HEAD
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
+=======
+>>>>>>> 706b1e0a47c76c133bc63600d3cb28e381d0ac5b
     "react-inlinesvg": "^1.2.0",
+    "supertest": "^4.0.2",
     "svg-inline-loader": "^0.8.2",
     "webpack": "^4.42.0"
   },
@@ -45,6 +65,7 @@
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "fs": "0.0.1-security",
+    "jest-cli": "^25.1.0",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "mysql": "^2.18.1",
@@ -54,14 +75,12 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-icons": "^3.9.0",
+<<<<<<< HEAD
+=======
+    "react-test-renderer": "^16.13.1",
+>>>>>>> 706b1e0a47c76c133bc63600d3cb28e381d0ac5b
     "sequelize": "^5.21.5",
     "styled-components": "^5.0.1",
     "webpack-cli": "^3.3.11"
-  },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "jest-enzyme"
-    ],
-    "testEnvironment": "enzyme"
   }
 }

@@ -4,7 +4,7 @@ var DIST_DIR = path.join(__dirname, '/client/dist');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: `${SRC_DIR}/app.jsx`,
+  entry: `${SRC_DIR}/index.jsx`,
   output: {
     filename: 'bundle.js',
     path: DIST_DIR
@@ -17,7 +17,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react']
+            presets: ['@babel/preset-env','@babel/preset-react']
           }
         },
       },

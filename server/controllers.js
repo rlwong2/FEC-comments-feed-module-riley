@@ -3,17 +3,19 @@ const moment = require('moment');
 const db = require('./db');
 
 async function newComment (obj) {
-  let newCommentBlock = {
-    user_id: faker.random.uuid(),
-    user_name: obj.user_name,
-    user_profile_pic: 'https://fec-comments-images.s3.us-east-2.amazonaws.com/zelda.jpg',
-    text: obj.text,
-    user_followers_count: Math.floor(Math.random() * 100),
-    track_location: moment.utc(Math.floor(Math.random() * 235000)).format('mm:ss'),
-    original_comment_id: null
+  return await function () {
+    let newCommentBlock = {
+      user_id: faker.random.uuid(),
+      user_name: obj.user_name,
+      user_profile_pic: 'https://fec-comments-images.s3.us-east-2.amazonaws.com/zelda.jpg',
+      text: obj.text,
+      user_followers_count: Math.floor(Math.random() * 100),
+      track_location: moment.utc(Math.floor(Math.random() * 235000)).format('mm:ss'),
+      original_comment_id: null
+    }
+    // console.log(fakeCommentBlock)
+    return newCommentBlock;
   }
-  // console.log(fakeCommentBlock)
-  return newCommentBlock;
 }
 
 module.exports = {
@@ -25,7 +27,7 @@ module.exports = {
           res.json(song)
         })
         .catch((err) => {
-          console.log(err)
+          console.log('Error: song.get', err)
         })
     }
 
@@ -38,7 +40,7 @@ module.exports = {
           res.json(artist)
         })
         .catch((err) => {
-          console.log(err)
+          console.log('Error: artist.get', err)
         })
     }
 
@@ -51,7 +53,7 @@ module.exports = {
           res.json(comments)
         })
         .catch((err) => {
-          console.log(err)
+          console.log('Error: comments.get', err)
         })
     },
 
@@ -66,6 +68,7 @@ module.exports = {
             db.Comments.findOrCreate({ where: { text: text }})
               .spread((comment, created) => {
                 res.sendStatus(created ? 201: 200);
+                res.end();
               })
           })
           .catch((err) => {

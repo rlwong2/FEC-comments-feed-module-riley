@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import $ from 'jquery';
 import axios from 'axios';
-import Artist from './components/Artist.jsx';
-import Song from './components/Song.jsx';
-import Comments from './components/Comments.jsx';
-import LikeBar from './components/LikeBar.jsx'
+
+import Artist from './Artist.jsx';
+import Song from './Song.jsx';
+import Comments from './Comments.jsx';
+import LikeBar from './LikeBar.jsx'
 
 const AppBody = styled.div`
   width: 670px;
@@ -104,7 +105,7 @@ class App extends React.Component {
   getSong() {
     axios.get('http://localhost:3000/song')
     .then((result) => {
-      console.log(result)
+      // console.log(result)
       this.setState({
         song: result.data
       })
@@ -114,9 +115,9 @@ class App extends React.Component {
   getArtist() {
     axios.get('http://localhost:3000/artist')
     .then((result) => {
-      console.log(result)
+      // console.log(result)
       let obj = result.data;
-      console.log(obj.followers_count)
+      // console.log(obj.followers_count)
       obj.followers_count = obj.followers_count.toString().slice(0, -3).concat('K')
       this.setState({
         artist: obj
@@ -127,7 +128,7 @@ class App extends React.Component {
   getComments() {
     axios.get('http://localhost:3000/comments')
     .then((result) => {
-      console.log(result)
+      // console.log(result)
       this.setState({
         comments: result.data
       })
@@ -159,7 +160,7 @@ class App extends React.Component {
       }
       axios.post('/comments', newComment )
         .then((result) => {
-          console.log('Success: Posted comment')
+          // console.log('Success: Posted comment')
           this.getComments();
         })
         .catch((err) => {
@@ -185,4 +186,6 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('App'));
+// ReactDOM.render(<App />, document.getElementById('App'));
+
+export default App;
