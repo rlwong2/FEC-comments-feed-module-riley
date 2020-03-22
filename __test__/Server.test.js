@@ -8,16 +8,22 @@ let server;
 
 describe("Checks all the endpoints to the server", () => {
 
-  beforeAll(() => {
+  beforeAll((done) => {
     // process.env.NODE_ENV = 'test';
     server = app.listen(3001, () => {
       global.agent = request.agent(server);
+      done();
     })
   })
 
-  afterAll(async (done) => {
-    app.killServer();
+  afterAll((done) => {
+      return server && server.close(done);
   });
+
+  // Also works for TCPSERVERWRAPPER error in Jest
+  // afterAll(async () => {
+  //   await new Promise(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  // });
 
   test("/artist endpoint returns object with artist name", async (done) => {
     const res = await request(app).get("/artist");
