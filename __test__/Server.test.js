@@ -1,7 +1,7 @@
 // const axios = require('axios');
-const app = require('../server/);
-const supertest = require('supertest');
-const request = supertest(app);
+const app = require('../server/index.js');
+const request = require('supertest');
+// const request = supertest(app);
 
 // const api = axios.create({ baseURL: "http://localhost:3000/" });
 let server;
@@ -9,11 +9,10 @@ let server;
 describe("Checks all the endpoints to the server", () => {
 
   beforeAll(() => {
-    process.env.NODE_ENV = 'test';
-    // server = app.listen(3001, () => {
-    //   global.agent = request.agent(server);
-    //   done()
-    // })
+    // process.env.NODE_ENV = 'test';
+    server = app.listen(3001, () => {
+      global.agent = request.agent(server);
+    })
   })
 
   afterAll(async (done) => {
