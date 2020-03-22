@@ -41,6 +41,11 @@
     "file-loader": "^6.0.0",
     "html-loader": "^0.5.5",
     "jest": "^25.1.0",
+<<<<<<< HEAD
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2",
+=======
+>>>>>>> 706b1e0a47c76c133bc63600d3cb28e381d0ac5b
     "react-inlinesvg": "^1.2.0",
     "supertest": "^4.0.2",
     "svg-inline-loader": "^0.8.2",
@@ -70,7 +75,10 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-icons": "^3.9.0",
+<<<<<<< HEAD
+=======
     "react-test-renderer": "^16.13.1",
+>>>>>>> 706b1e0a47c76c133bc63600d3cb28e381d0ac5b
     "sequelize": "^5.21.5",
     "styled-components": "^5.0.1",
     "webpack-cli": "^3.3.11"
