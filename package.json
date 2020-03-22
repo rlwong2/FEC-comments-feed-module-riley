@@ -24,7 +24,7 @@
     "test": "jest",
     "start": "webpack-dev-server --open --mode development",
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js",
+    "server-dev": "nodemon server/start.js",
     "build": "webpack --mode production",
     "seed": "node server/seeder.js",
     "db-init": "node server/db/index.js"

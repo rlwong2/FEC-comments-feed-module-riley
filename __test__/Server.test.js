@@ -1,6 +1,7 @@
-const axios = require('axios');
+// const axios = require('axios');
 const app = require('../server/index.js');
-const request = require('supertest');
+const supertest = require('supertest');
+const request = supertest(app);
 
 // const api = axios.create({ baseURL: "http://localhost:3000/" });
 let server;
