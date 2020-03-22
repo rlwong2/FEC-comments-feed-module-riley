@@ -20,8 +20,4 @@ app.use((req, res, next) => {
 // Router
 app.use('/', router);
 
-// app.killServer = () => {
-//   app.close();
-// };
-
 module.exports = app;
