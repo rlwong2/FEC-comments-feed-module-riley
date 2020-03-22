@@ -10,8 +10,7 @@ import Comments from './Comments.jsx';
 import LikeBar from './LikeBar.jsx'
 
 const AppBody = styled.div`
-  width: 670px;
-  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  width: 850px;
   color: #000;
   margin: 20px;
   padding: 0;
@@ -74,7 +73,7 @@ const Left = styled.div`
 `
 
 const Right = styled.div`
-  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font: 12px/1.3em Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   margin-top: 120px;
   padding-left: 140px;
   display: block;

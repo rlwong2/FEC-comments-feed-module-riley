@@ -17,6 +17,12 @@ describe('Test to check Jest', () => {
 describe('Renders components in DOM', () => {
   test('Renders comments', async () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.find(App)).toHaveLength(1);
+    expect(wrapper.find(AppBody)).toHaveLength(1);
   })
 });
+
+describe('Renders all the components in App', () => {
+  jest.mock('./Song', () => () => <div id="mockSong">mockSong</div>)
+  const wrapper = mount(<App />)
+  expect(wrapper.find('mockSong').length).toEqual(1)
+})
