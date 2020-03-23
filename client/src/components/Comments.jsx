@@ -21,6 +21,14 @@ const CommentTop = styled.div`
 const CommentFeed = styled.li`
   display: list-item;
   list-style: none;
+  border-bottom: 1px solid #f2f2f2;
+`
+
+const End = styled.div`
+  margin: 0;
+  padding: 0;
+  height: 20px;
+  width: inherit;
 `
 
 class Comments extends React.Component {
@@ -63,6 +71,10 @@ class Comments extends React.Component {
 
     let startIndex = this.state.shownComments.length + 1;
     let shownLength = this.state.shownComments.length;
+    if (this.state.comments.length - shownLength < 20) {
+      this.setState({ shownComments: this.state.comments })
+      return;
+    }
     let commentsExtend  = this.state.shownComments.concat(this.state.comments.slice(shownLength + 1, shownLength + 21));
     this.setState({ shownComments: commentsExtend });
   };
@@ -72,12 +84,6 @@ class Comments extends React.Component {
       <div>
         <CommentTop><FaCommentAlt /> {this.state.comments.length} comments</CommentTop>
         <CommentFeed>
-          {/* {this.props.comments.map((comment) => {
-            return (
-              <CommentBlock key={comment.id} comment={comment} />
-            )
-          })} */}
-
           <InfiniteScroll
             dataLength={this.state.shownComments.length}
             next={this.fetchMoreData}
@@ -85,7 +91,7 @@ class Comments extends React.Component {
             loader={<h4>Loading...</h4>}
             endMessage={
               <p style={{ textAlign: "center" }}>
-                <b>Yay! You have seen it all</b>
+
               </p>
             }
           >
@@ -94,6 +100,7 @@ class Comments extends React.Component {
             ))}
           </InfiniteScroll>
         </CommentFeed>
+        <End />
       </div>
     )
   }
