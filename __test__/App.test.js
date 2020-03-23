@@ -58,9 +58,9 @@ describe('App Component', () => {
 
 describe('App Component', () => {
   describe('when rendered', () => {
-    it('should fetch comments', () => {
-      const getSpy = jest.spyOn(axios, 'comments.get');
-      const toDoListInstance = shallow(
+    it('should fetch artist', () => {
+      const getSpy = jest.spyOn(axios, 'get');
+      const appInstance = shallow(
         <App />
       );
       expect(getSpy).toBeCalled();
