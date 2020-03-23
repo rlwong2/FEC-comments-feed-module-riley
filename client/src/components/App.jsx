@@ -98,7 +98,6 @@ class App extends React.Component {
   componentDidMount() {
     this.getSong();
     this.getArtist();
-    this.getComments();
   }
 
   getSong() {
@@ -121,19 +120,6 @@ class App extends React.Component {
       this.setState({
         artist: obj
       })
-    })
-  }
-
-  getComments() {
-    axios.get('http://localhost:3000/comments')
-    .then((result) => {
-      // console.log(result)
-      this.setState({
-        comments: result.data
-      })
-    })
-    .catch((err) => {
-      console.log('Error: getComments', err)
     })
   }
 
@@ -179,7 +165,7 @@ class App extends React.Component {
       </Left>
       <Right>
         <Song song={this.state.song} />
-        <Comments comments={this.state.comments} />
+        <Comments />
       </Right>
     </AppBody>)
   }
