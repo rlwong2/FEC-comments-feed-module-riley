@@ -96,7 +96,6 @@ class App extends React.Component {
   componentDidMount() {
     this.getSong();
     this.getArtist();
-    this.getComments();
   }
 
   getSong() {
@@ -122,6 +121,38 @@ class App extends React.Component {
     })
   }
 
+<<<<<<< HEAD
+  handleInput(e) {
+    this.setState({
+      commentInput: e.target.value
+    })
+
+    if (e.key === 'Enter') {
+      this.setState({
+        commentInput: ''
+      })
+      this.handleSubmit(e)
+    }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+      let newComment = {
+        user_name: 'ZeldaXOXO',
+        text: e.target.value
+      }
+      axios.post('/comments', newComment )
+        .then((result) => {
+          // console.log('Success: Posted comment')
+          this.getComments();
+        })
+        .catch((err) => {
+          console.log('Error: Post comment:', err)
+        })
+
+  }
+=======
   getComments() {
     axios.get('http://localhost:3000/comments')
     .then((result) => {
@@ -165,6 +196,7 @@ class App extends React.Component {
   //       })
 
   // }
+>>>>>>> master
 
   render() {
     return (<AppBody>
@@ -175,7 +207,7 @@ class App extends React.Component {
       </Left>
       <Right>
         <Song song={this.state.song} />
-        <Comments comments={this.state.comments} />
+        <Comments />
       </Right>
     </AppBody>)
   }
