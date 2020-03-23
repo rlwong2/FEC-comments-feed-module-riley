@@ -6,7 +6,7 @@ const request = require('supertest');
 // const api = axios.create({ baseURL: "http://localhost:3000/" });
 let server;
 
-describe("Tests Server Endpoints", () => {
+describe.skip("Tests Server Endpoints", () => {
 
   beforeAll((done) => {
     // process.env.NODE_ENV = 'test';

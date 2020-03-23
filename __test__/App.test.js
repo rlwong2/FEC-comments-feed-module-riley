@@ -1,5 +1,4 @@
 import React from 'react';
-import App from '../client/src/components/App.jsx';
 import renderer from 'react-test-renderer';
 // import { render } from '@testing-library/react';
 
@@ -7,8 +6,10 @@ import { configure, shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
+import App from '../client/src/components/App.jsx';
+import axios from '../__mocks__/axios.js';
 
-
+jest.mock('axios');
 
 describe('Test to check Jest', () => {
   test('1 plus 1 equals 2', () => {
@@ -54,3 +55,15 @@ describe('App Component', () => {
     expect(wrapper.find('#mockLikeBar').length).toEqual(1)
   })
 })
+
+describe('App Component', () => {
+  describe('when rendered', () => {
+    it('should fetch comments', () => {
+      const getSpy = jest.spyOn(axios, 'comments.get');
+      const toDoListInstance = shallow(
+        <App />
+      );
+      expect(getSpy).toBeCalled();
+    });
+  });
+});
