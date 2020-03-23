@@ -3,7 +3,7 @@ const moment = require('moment');
 const db = require('./db');
 
 async function newComment (obj) {
-  return await function () {
+  let fakeIt = function (object) {
     let newCommentBlock = {
       user_id: faker.random.uuid(),
       user_name: obj.user_name,
@@ -13,9 +13,10 @@ async function newComment (obj) {
       track_location: moment.utc(Math.floor(Math.random() * 235000)).format('mm:ss'),
       original_comment_id: null
     }
-    // console.log(fakeCommentBlock)
+    // console.log(newCommentBlock)
     return newCommentBlock;
   }
+  return await fakeIt(obj);
 }
 
 module.exports = {
@@ -58,21 +59,35 @@ module.exports = {
     },
 
     post: (req, res) => {
-      console.log(req.body)
+      console.log('req.body: ', req.body)
       let text = req.body.text;
       newComment(req.body)
         .then((obj) => {
+          // console.log('obj: ')
+          // console.log(obj)
           db.Comments.create(obj)
           .then((result) => {
             console.log('Success: newComment created')
-            db.Comments.findOrCreate({ where: { text: text }})
-              .spread((comment, created) => {
-                res.sendStatus(created ? 201: 200);
-                res.end();
-              })
+            res.sendStatus(201)
+            res.end('Created')
+            // db.Comments.findOne({ where: { text: text }})
+            //   .then((result) => {
+            //     res.sendStatus(201)
+            //     res.end('Created')
+            //   })
+            //   .catch((err) => {
+            //     res.sendStatus(200)
+            //     res.end('OK')
+            //   })
+            // db.Comments.findOrCreate({ where: { text: text }})
+            //   .spread((comment, created) => {
+            //     res.sendStatus(created ? 201: 200);
+            //   })
           })
           .catch((err) => {
             console.log('Error: newComment created', err)
+            res.sendStatus(200)
+            res.end('OK')
           })
         })
 
