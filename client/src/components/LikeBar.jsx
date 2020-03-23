@@ -28,10 +28,10 @@ const LikeBarBlock = styled.div`
 
 const ButtonsLeft = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: row;
   align-items: center;
-  width: 200px;
+  width: 400px;
 `
 const InfoRight = styled.div`
   display: flex;
@@ -63,7 +63,7 @@ const Button = styled.div`
   align-items: center;
   position: relative;
   height: 26px;
-  margin: 0;
+  margin: 0 3px;
   padding: 2px 11px 2px 10px;
   border: 1px solid #e5e5e5;
   border-radius: 3px;
@@ -76,10 +76,18 @@ const Button = styled.div`
   text-align: center;
   vertical-align: center;
   box-sizing: border-box;
+
+  &:hover {
+    border: 1px solid #999;
+  }
 `
 
 const ShareButton = styled(Button)`
   font-size: 11px;
+`
+
+const ButtonText = styled.span`
+  font-size: 12px;
 `
 
 class LikeBar extends React.Component {
@@ -103,11 +111,11 @@ class LikeBar extends React.Component {
   render() {
     return (<LikeBarBlock>
       <ButtonsLeft>
-        <Button test-dataid="heart"><TiHeart /></Button>
-        <Button test-dataid="repost"><TiArrowLoop /></Button>
-        <ShareButton test-dataid="share"><FaShareSquare /></ShareButton>
-        <Button test-dataid="nextup"><MdPlaylistPlay /></Button>
-        <Button test-dataid="menu"><GoThreeBars /></Button>
+        <Button id="heart"><TiHeart /><ButtonText> Like</ButtonText></Button>
+        <Button id="repost"><TiArrowLoop /><ButtonText> Repost</ButtonText></Button>
+        <ShareButton id="share"><FaShareSquare /><ButtonText> Share</ButtonText></ShareButton>
+        <Button id="nextup"><MdPlaylistPlay /><ButtonText> Add to Next Up</ButtonText></Button>
+        <Button id="menu"><GoThreeBars /><ButtonText> More</ButtonText></Button>
       </ButtonsLeft>
       <InfoRight>
         <InfoDiv><MdPlayArrow /> <Info>{ this.props.song.play_count }</Info></InfoDiv>
