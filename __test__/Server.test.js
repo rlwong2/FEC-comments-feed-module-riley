@@ -6,12 +6,14 @@ const request = require('supertest');
 // const api = axios.create({ baseURL: "http://localhost:3000/" });
 let server;
 
-describe("Checks all the endpoints to the server", () => {
+describe.skip("Tests Server Endpoints", () => {
 
   beforeAll((done) => {
     // process.env.NODE_ENV = 'test';
-    server = app.listen(3001, () => {
+    const port = 3005;
+    server = app.listen(port, () => {
       global.agent = request.agent(server);
+      console.log(`Testing server on port ${port}`)
       done();
     })
   })
@@ -52,10 +54,16 @@ describe("Checks all the endpoints to the server", () => {
       text: 'Bonjour, monsieur!'
     }
     const res = await request(app)
-      .post("/comments")
+      .post('/comments')
       .send(testComment);
-    expect(res.statusCode).toBe(200);
-    done();
+      // .expect(201)
+      // .then(function(err, res) {
+      //   if (err) return done(err);
+      //   done();
+      // })
+      expect(res.statusCode).toBe(201);
+      done();
+
   });
 
 });

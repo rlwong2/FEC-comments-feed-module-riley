@@ -4,7 +4,7 @@ const db = new Sequelize('fec_comments_module', 'root', '', {
   logging: false
 });
 
-var Comments = db.define('Comments', {
+const Comments = db.define('Comments', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -21,7 +21,7 @@ var Comments = db.define('Comments', {
   timestamps: true
 });
 
-var Artist = db.define('Artist', {
+const Artist = db.define('Artist', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -35,7 +35,7 @@ var Artist = db.define('Artist', {
   freezeTableName: true
 });
 
-var Song = db.define('Song', {
+const Song = db.define('Song', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
