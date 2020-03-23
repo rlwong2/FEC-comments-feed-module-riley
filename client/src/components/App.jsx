@@ -7,7 +7,8 @@ import axios from 'axios';
 import Artist from './Artist.jsx';
 import Song from './Song.jsx';
 import Comments from './Comments.jsx';
-import LikeBar from './LikeBar.jsx'
+import LikeBar from './LikeBar.jsx';
+import CommentForm from './CommentForm.jsx';
 
 const AppBody = styled.div`
   width: 850px;
@@ -45,10 +46,6 @@ const UserAvatar = styled.div`
   background-image: url("https://fec-comments-images.s3.us-east-2.amazonaws.com/zelda.jpg");
 `
 
-const CommentForm = styled.div`
-  width: 630px;
-  height: inherit;
-`
 const CommentInput = styled.input`
   border-radius: 4px;
   background: #fff;
@@ -91,8 +88,9 @@ class App extends React.Component {
       comments: [],
       commentInput: ''
     }
-    this.handleInput = this.handleInput.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.getSong = this.getSong.bind(this);
+    this.getArtist = this.getArtist.bind(this);
+    this.getComments = this.getComments.bind(this);
   }
 
   componentDidMount() {
@@ -137,42 +135,40 @@ class App extends React.Component {
     })
   }
 
-  handleInput(e) {
-    this.setState({
-      commentInput: e.target.value
-    })
+  // handleInput(e) {
+  //   this.setState({
+  //     commentInput: e.target.value
+  //   })
 
-    if (e.key === 'Enter') {
-      this.setState({
-        commentInput: ''
-      })
-      this.handleSubmit(e)
-    }
-  }
+  //   if (e.key === 'Enter') {
+  //     this.setState({
+  //       commentInput: ''
+  //     })
+  //     this.handleSubmit(e)
+  //   }
+  // }
 
-  handleSubmit(e) {
-    e.preventDefault();
+  // handleSubmit(e) {
+  //   e.preventDefault();
 
-      let newComment = {
-        user_name: 'ZeldaXOXO',
-        text: e.target.value
-      }
-      axios.post('/comments', newComment )
-        .then((result) => {
-          // console.log('Success: Posted comment')
-          this.getComments();
-        })
-        .catch((err) => {
-          console.log('Error: Post comment:', err)
-        })
+  //     let newComment = {
+  //       user_name: 'ZeldaXOXO',
+  //       text: e.target.value
+  //     }
+  //     axios.post('/comments', newComment )
+  //       .then((result) => {
+  //         // console.log('Success: Posted comment')
+  //         this.getComments();
+  //       })
+  //       .catch((err) => {
+  //         console.log('Error: Post comment:', err)
+  //       })
 
-  }
+  // }
 
   render() {
     return (<AppBody>
-      <CommentFormBlock>
-        <UserAvatar /><CommentInput placeholder="Write a comment" value={ this.state.commentInput } onChange={ this.handleInput } onKeyPress={ this.handleInput } />
-      </CommentFormBlock>
+      <CommentForm getComments={this.getComments} />
       <LikeBar song={this.state.song} />
       <Left>
         <Artist artist={this.state.artist} />
@@ -184,7 +180,5 @@ class App extends React.Component {
     </AppBody>)
   }
 }
-
-// ReactDOM.render(<App />, document.getElementById('App'));
 
 export default App;
