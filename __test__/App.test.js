@@ -17,13 +17,6 @@ describe('Test to check Jest', () => {
   });
 });
 
-// describe('Renders components in DOM', () => {
-//   test('Renders comments', async () => {
-//     const wrapper = shallow(<App />);
-//     expect(wrapper.find(AppBody)).toHaveLength(1);
-//   })
-// });
-
 jest.mock('../client/src/components/Song', () => () => <div id="mockSong">mockSong</div>)
 jest.mock('../client/src/components/Artist', () => () => <div id="mockArtist">mockArtist</div>)
 jest.mock('../client/src/components/Comments', () => () => <div id="mockComments">mockComments</div>)
