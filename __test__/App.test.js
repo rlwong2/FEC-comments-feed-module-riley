@@ -7,8 +7,6 @@ configure({ adapter: new Adapter() });
 
 import App from '../client/src/components/App.jsx';
 import axios from '../__mocks__/axios.js';
-import axiosSongGet from '../__mocks__/axiosSongGet.js';
-
 
 describe('Test to check Jest', () => {
   test('1 plus 1 equals 2', () => {
@@ -59,16 +57,3 @@ describe('App Component', () => {
     });
   });
 });
-
-
-// jest.mock('axios');
-
-// describe('App Component', () => {
-//   describe('when rendered', () => {
-//     it('should fetch song description', () => {
-//       const songSpy = jest.spyOn(axios, 'get');
-//       const appInstance = shallow(<App />);
-//       expect(songSpy).toBeCalled();
-//     });
-//   });
-// });

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import $ from 'jquery';
 import svg from 'react-inlinesvg';
 
-// import img from '../the1975thumb.jpg';
 import { IoMdPeople } from 'react-icons/io';
 import { MdPersonAdd, MdReportProblem } from 'react-icons/md';
 import { GiSoundWaves } from 'react-icons/gi';
@@ -94,7 +93,7 @@ const Artist = (props) => (
     <Followers><IoMdPeople /> {props.artist.followers_count}</Followers>
     <Tracks><GiSoundWaves /> {props.artist.tracks_count}</Tracks>
     </ClickyBar>
-    <Follow><MdPersonAdd />  Follow</Follow>
+    <Follow id="follow-button"><MdPersonAdd />  Follow</Follow>
     <Report><MdReportProblem /> Report</Report>
   </ArtistPanel>
 )
