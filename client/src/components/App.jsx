@@ -90,7 +90,6 @@ class App extends React.Component {
     }
     this.getSong = this.getSong.bind(this);
     this.getArtist = this.getArtist.bind(this);
-    this.getComments = this.getComments.bind(this);
   }
 
   componentDidMount() {
@@ -120,83 +119,6 @@ class App extends React.Component {
       })
     })
   }
-
-<<<<<<< HEAD
-  handleInput(e) {
-    this.setState({
-      commentInput: e.target.value
-    })
-
-    if (e.key === 'Enter') {
-      this.setState({
-        commentInput: ''
-      })
-      this.handleSubmit(e)
-    }
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-
-      let newComment = {
-        user_name: 'ZeldaXOXO',
-        text: e.target.value
-      }
-      axios.post('/comments', newComment )
-        .then((result) => {
-          // console.log('Success: Posted comment')
-          this.getComments();
-        })
-        .catch((err) => {
-          console.log('Error: Post comment:', err)
-        })
-
-  }
-=======
-  getComments() {
-    axios.get('http://localhost:3000/comments')
-    .then((result) => {
-      // console.log(result)
-      this.setState({
-        comments: result.data
-      })
-    })
-    .catch((err) => {
-      console.log('Error: getComments', err)
-    })
-  }
-
-  // handleInput(e) {
-  //   this.setState({
-  //     commentInput: e.target.value
-  //   })
-
-  //   if (e.key === 'Enter') {
-  //     this.setState({
-  //       commentInput: ''
-  //     })
-  //     this.handleSubmit(e)
-  //   }
-  // }
-
-  // handleSubmit(e) {
-  //   e.preventDefault();
-
-  //     let newComment = {
-  //       user_name: 'ZeldaXOXO',
-  //       text: e.target.value
-  //     }
-  //     axios.post('/comments', newComment )
-  //       .then((result) => {
-  //         // console.log('Success: Posted comment')
-  //         this.getComments();
-  //       })
-  //       .catch((err) => {
-  //         console.log('Error: Post comment:', err)
-  //       })
-
-  // }
->>>>>>> master
 
   render() {
     return (<AppBody>

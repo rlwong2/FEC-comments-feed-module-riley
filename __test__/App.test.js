@@ -1,13 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-// import { render } from '@testing-library/react';
 
 import { configure, shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
 import App from '../client/src/components/App.jsx';
-import axiosArtistGet from '../__mocks__/axiosArtistGet.js';
+import axios from '../__mocks__/axios.js';
 import axiosSongGet from '../__mocks__/axiosSongGet.js';
 
 
@@ -49,30 +48,27 @@ describe('App Component', () => {
   })
 })
 
-jest.mock('axiosArtistGet');
+jest.mock('axios');
 
 describe('App Component', () => {
   describe('when rendered', () => {
     it('should fetch artist description', () => {
-      const getSpy = jest.spyOn(axiosArtistGet, 'get');
-      const appInstance = mount(
-        <Artist />
-      );
-      expect(getSpy).toBeCalled();
+      const artistSpy = jest.spyOn(axios, 'get');
+      const appInstance = mount(<App />);
+      expect(artistSpy).toBeCalled();
     });
   });
 });
 
-jest.mock('axiosSongGet');
 
-describe('App Component', () => {
-  describe('when rendered', () => {
-    it('should fetch song description', () => {
-      const getSpy = jest.spyOn(axiosSongGet, 'get');
-      const appInstance = shallow(
-        <Song />
-      );
-      expect(getSpy).toBeCalled();
-    });
-  });
-});
+// jest.mock('axios');
+
+// describe('App Component', () => {
+//   describe('when rendered', () => {
+//     it('should fetch song description', () => {
+//       const songSpy = jest.spyOn(axios, 'get');
+//       const appInstance = shallow(<App />);
+//       expect(songSpy).toBeCalled();
+//     });
+//   });
+// });

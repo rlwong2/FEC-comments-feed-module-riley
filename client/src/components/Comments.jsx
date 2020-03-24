@@ -48,7 +48,6 @@ class Comments extends React.Component {
   }
 
   getComments() {
-    console.log('GET /comments')
     axios.get('http://localhost:3000/comments')
     .then((result) => {
       // console.log(result)
@@ -63,7 +62,6 @@ class Comments extends React.Component {
   }
 
   fetchMoreData() {
-    console.log('>>>>>> fetchMoreData')
     if (this.state.shownComments.length >= this.state.comments.length) {
       this.setState({ hasMore: false });
       return;
