@@ -16,6 +16,8 @@ const CommentTop = styled.div`
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 5px;
   margin-bottom: 18px;
+  width: 100vw;
+  max-width: 710px;
 `
 
 const CommentFeed = styled.li`

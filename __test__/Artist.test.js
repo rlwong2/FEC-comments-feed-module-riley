@@ -26,9 +26,9 @@ describe('When Follow button is clicked', () => {
     const wrapper = shallow(<Artist artist={artist} />);
 
     const followButton = wrapper.find('#follow-button');
-    expect(followButton.text()).toBe('Follow');
+    expect(followButton.text()).toBe('<MdPersonAdd />  Follow');
 
-    followButton.simulate('click');
-    expect(followButton.text()).toBe('Following');
+    followButton.prop('onClick');
+    expect(followButton.text()).toBe('<MdPersonAdd />  Following');
   });
 });

@@ -5,10 +5,19 @@ import moment from 'moment';
 const CommentFlex = styled.div`
   font-size: 11px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
   margin-bottom: 20px;
+  width: 100vw;
+  max-width: 710px;
+`
+
+const LeftContainer = styled.div`
+display: flex;
+justify-content: flex-start;
+flex-direction: row;
+flex-wrap: wrap;
 `
 
 const AvatarMini = styled.div`
@@ -50,11 +59,13 @@ const CommentBlock = (props) => {
     backgroundImage: "url(" + props.comment.user_profile_pic + ")"
   }
   return(<CommentFlex>
-    <AvatarMini style={style} />
-    <UserNameText>
-      <Username>{ props.comment.user_name } at { props.comment.track_location }: </Username>
-      <Text>{ props.comment.text }</Text>
-    </UserNameText>
+    <LeftContainer>
+      <AvatarMini style={style} />
+      <UserNameText>
+        <Username>{ props.comment.user_name } at { props.comment.track_location }: </Username>
+        <Text>{ props.comment.text }</Text>
+      </UserNameText>
+    </LeftContainer>
     <Ago>{ moment(props.comment.createdAt).fromNow() }</Ago>
   </CommentFlex>
 )}
