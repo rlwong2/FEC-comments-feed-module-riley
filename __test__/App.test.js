@@ -7,9 +7,9 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
 import App from '../client/src/components/App.jsx';
-import axios from '../__mocks__/axios.js';
+import axiosArtistGet from '../__mocks__/axiosArtistGet.js';
+import axiosSongGet from '../__mocks__/axiosSongGet.js';
 
-jest.mock('axios');
 
 describe('Test to check Jest', () => {
   test('1 plus 1 equals 2', () => {
@@ -49,12 +49,28 @@ describe('App Component', () => {
   })
 })
 
+jest.mock('axiosArtistGet');
+
 describe('App Component', () => {
   describe('when rendered', () => {
-    it('should fetch artist', () => {
-      const getSpy = jest.spyOn(axios, 'get');
+    it('should fetch artist description', () => {
+      const getSpy = jest.spyOn(axiosArtistGet, 'get');
+      const appInstance = mount(
+        <Artist />
+      );
+      expect(getSpy).toBeCalled();
+    });
+  });
+});
+
+jest.mock('axiosSongGet');
+
+describe('App Component', () => {
+  describe('when rendered', () => {
+    it('should fetch song description', () => {
+      const getSpy = jest.spyOn(axiosSongGet, 'get');
       const appInstance = shallow(
-        <App />
+        <Song />
       );
       expect(getSpy).toBeCalled();
     });
