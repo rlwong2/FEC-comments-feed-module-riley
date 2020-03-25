@@ -5,7 +5,7 @@ const Promise = require('bluebird');
 module.exports = {
   get: (path) => {
     switch(path) {
-      case 'http://localhost:3000/artist':
+      case 'http://localhost:3005/artist':
         return Promise.resolve({
           data: [
             {
@@ -21,7 +21,7 @@ module.exports = {
         })
         break;
 
-      case 'http://localhost:3000/song':
+      case 'http://localhost:3005/song':
         return Promise.resolve({
           data: [
             {
@@ -44,7 +44,7 @@ module.exports = {
         })
         break;
 
-      case 'http://localhost:3000/comments':
+      case 'http://localhost:3005/comments':
         return Promise.resolve({
           data: [
             {

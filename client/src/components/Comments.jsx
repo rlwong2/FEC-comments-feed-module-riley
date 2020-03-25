@@ -50,7 +50,7 @@ class Comments extends React.Component {
   }
 
   getComments() {
-    axios.get('http://localhost:3000/comments')
+    axios.get('http://localhost:3005/comments')
     .then((result) => {
       // console.log(result)
       this.setState({

@@ -18,8 +18,6 @@ FEC-Group-Zelda
 
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
 - Node v12.14.0
 
 ## Development

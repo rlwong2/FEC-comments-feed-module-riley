@@ -3,7 +3,6 @@ const app = require('../server/index.js');
 const request = require('supertest');
 // const request = supertest(app);
 
-// const api = axios.create({ baseURL: "http://localhost:3000/" });
 let server;
 
 describe.skip("Tests Server Endpoints", () => {

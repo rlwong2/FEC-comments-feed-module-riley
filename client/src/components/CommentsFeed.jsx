@@ -85,7 +85,7 @@ class CommentsFeed extends React.Component {
   }
 
   getSong() {
-    axios.get('http://localhost:3000/song')
+    axios.get('http://localhost:3005/song')
     .then((result) => {
       // console.log(result)
       this.setState({
@@ -95,7 +95,7 @@ class CommentsFeed extends React.Component {
   }
 
   getArtist() {
-    axios.get('http://localhost:3000/artist')
+    axios.get('http://localhost:3005/artist')
     .then((result) => {
       // console.log(result)
       let obj = result.data;
