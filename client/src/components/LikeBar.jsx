@@ -13,7 +13,7 @@ const LikeBarBlock = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   min-height: 33px;
-  width: inherit;
+  width: 850px;
   margin: 0;
   padding: 0;
   font-weight: 100;
@@ -23,6 +23,9 @@ const LikeBarBlock = styled.div`
   align-items: baseline;
   padding-bottom: 5px;
   border-bottom: 1px solid #f2f2f2;
+  position: absolute;
+  top: 50px;
+  left: 0;
 `
 
 const ButtonsLeft = styled.div`
@@ -74,7 +77,6 @@ const Button = styled.div`
   text-align: center;
   vertical-align: center;
   box-sizing: border-box;
-
 `
 
 const ShareButton = styled(Button)`

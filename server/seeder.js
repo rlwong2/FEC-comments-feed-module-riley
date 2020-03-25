@@ -63,7 +63,7 @@ let fakeSong = function() {
 }
 
 async function fakeCommentAsync (string) {
-  let fakeCommentBlock = {
+  let fakeCommentsFeed = {
     user_id: faker.random.uuid(),
     user_name: faker.internet.userName(),
     user_profile_pic: faker.internet.avatar(),
@@ -72,8 +72,8 @@ async function fakeCommentAsync (string) {
     track_location: moment.utc(Math.floor(Math.random() * 235000)).format('mm:ss'),
     original_comment_id: null
   }
-  // console.log(fakeCommentBlock)
-  return fakeCommentBlock;
+  // console.log(fakeCommentsFeed)
+  return fakeCommentsFeed;
 }
 
 // async function getHipsum () {

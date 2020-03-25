@@ -21,6 +21,9 @@ const CommentFormBlock = styled.div`
   flex-wrap: nowrap;
   margin-bottom: 5px;
   align-items: stretch;
+  position: absolute;
+  top: -120px;
+  left: -140px;
 `
 
 const UserAvatar = styled.div`
@@ -92,6 +95,6 @@ class CommentForm extends React.Component {
   }
 }
 
-// ReactDOM.render(<App />, document.getElementById('App'));
+// ReactDOM.render(<App />, document.getElementById('App')); <--- moved to index.jsx
 
 export default CommentForm;

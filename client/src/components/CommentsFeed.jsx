@@ -1,125 +1,73 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import $ from 'jquery';
-import axios from 'axios';
+import moment from 'moment';
 
-import Artist from './Artist.jsx';
-import Song from './Song.jsx';
-import Comments from './Comments.jsx';
-import LikeBar from './LikeBar.jsx';
-import CommentForm from './CommentForm.jsx';
-
-const AppBody = styled.div`
-  max-width: 850px;
-  min-width: 650px;
-  color: #000;
-  margin: 20px;
-  padding: 0;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-`
-
-const UserAvatar = styled.div`
-  width: 40px;
-  height: 40px;
-  background-position: 50% 50%;
-  background-size: cover;
-  background-image: url("https://fec-comments-images.s3.us-east-2.amazonaws.com/zelda.jpg");
-`
-
-const CommentInput = styled.input`
-  border-radius: 4px;
-  background: #fff;
-  font-size: 14px;
-  font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-  outline: none;
-  cursor: pointer;
-  border: 1px solid #e5e5e5;
-  width: 100%;
-  margin: 7px 7px;
-  padding-left: 9px;
-`
-
-const Left = styled.div`
-  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-  margin-top: 110px;
-  padding: 0;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-`
-
-const Right = styled.div`
-  font: 12px/1.3em Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-  margin-top: 120px;
-  padding: 0;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 140px;
-  right: 0;
+const CommentFlex = styled.div`
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
   width: 100vw;
   max-width: 710px;
 `
 
-class CommentsFeed extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      artist: {},
-      song: {},
-      comments: [],
-      commentInput: ''
-    }
-    this.getSong = this.getSong.bind(this);
-    this.getArtist = this.getArtist.bind(this);
-  }
+const LeftContainer = styled.div`
+display: flex;
+justify-content: flex-start;
+flex-direction: row;
+flex-wrap: wrap;
+`
 
-  componentDidMount() {
-    this.getSong();
-    this.getArtist();
-  }
+const AvatarMini = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+  background-position: 50% 50%;
+  background-size: cover;
+`
+const UserNameText = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 370px;
+  margin-left: 10px;
+`
 
-  getSong() {
-    axios.get('http://localhost:3005/song')
-    .then((result) => {
-      // console.log(result)
-      this.setState({
-        song: result.data
-      })
-    })
-  }
+const Username = styled.div`
+  font-size: 11px;
+  color: #999;
+`
 
-  getArtist() {
-    axios.get('http://localhost:3005/artist')
-    .then((result) => {
-      // console.log(result)
-      let obj = result.data;
-      // console.log(obj.followers_count)
-      obj.followers_count = obj.followers_count.toString().slice(0, -3).concat('K')
-      this.setState({
-        artist: obj
-      })
-    })
-  }
+const Text = styled.div`
+  font-size: 11px;
+  color: #333;
+`
 
-  render() {
-    return (<AppBody>
-      <CommentForm getComments={this.getComments} />
-      <LikeBar song={this.state.song} />
-      <Left>
-        <Artist artist={this.state.artist} />
-      </Left>
-      <Right>
-        <Song song={this.state.song} />
-        <Comments />
-      </Right>
-    </AppBody>)
+const Ago = styled.div`
+  font-size: 11px;
+  color: #999;
+  text-align: right;
+  width: 100px;
+`
+
+const CommentsFeed = (props) => {
+  const style = {
+    backgroundImage: "url(" + props.comment.user_profile_pic + ")"
   }
-}
+  return(<CommentFlex>
+    <LeftContainer>
+      <AvatarMini style={style} />
+      <UserNameText>
+        <Username>{ props.comment.user_name } at { props.comment.track_location }: </Username>
+        <Text>{ props.comment.text }</Text>
+      </UserNameText>
+    </LeftContainer>
+    <Ago>{ moment(props.comment.createdAt).fromNow() }</Ago>
+  </CommentFlex>
+)}
 
 export default CommentsFeed;

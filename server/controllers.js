@@ -4,7 +4,7 @@ const db = require('./db');
 
 async function newComment (obj) {
   let fakeIt = function (object) {
-    let newCommentBlock = {
+    let newCommentsFeed = {
       user_id: faker.random.uuid(),
       user_name: obj.user_name,
       user_profile_pic: 'https://fec-comments-images.s3.us-east-2.amazonaws.com/zelda.jpg',
@@ -13,8 +13,8 @@ async function newComment (obj) {
       track_location: moment.utc(Math.floor(Math.random() * 235000)).format('mm:ss'),
       original_comment_id: null
     }
-    // console.log(newCommentBlock)
-    return newCommentBlock;
+    // console.log(newCommentsFeed)
+    return newCommentsFeed;
   }
   return await fakeIt(obj);
 }

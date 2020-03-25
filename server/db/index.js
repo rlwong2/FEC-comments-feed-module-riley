@@ -1,8 +1,16 @@
 const Sequelize = require('sequelize');
+
 const db = new Sequelize('fec_comments_module', 'root', '', {
   dialect: 'mysql',
   logging: false
 });
+
+const create = db.query("CREATE DATABASE `fec_comments_module`;")
+.then((data) => {
+    console.log('fec_comments_module database created')
+  })
+.catch((err) => {
+})
 
 const Comments = db.define('Comments', {
   id: {
@@ -67,29 +75,3 @@ Comments.sync({ force: false });
 exports.Comments = Comments;
 exports.Artist = Artist;
 exports.Song = Song;
-
-
-// Schema
-// Comments Feed
-    // comment_id
-    // comment_user_id
-    // comment_user_name
-    // comment_body
-    // comment_date
-    // comment_track_location
-      // reply_comment_id
-      // reply_id
-      // reply
-
-// Artist Block
-  // artist_id
-  // artist_name
-  // followers_count
-  // artist_tracks_count
-
-// Song Details
-  // song_likes_count
-  // song_play_count
-  // song_repost_count
-  // song_description
-  // song_hashtags

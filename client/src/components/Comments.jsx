@@ -1,10 +1,13 @@
 import React from 'react';
 import Moment from 'moment';
 import styled from 'styled-components';
-import { FaCommentAlt } from 'react-icons/fa';
-import CommentBlock from './CommentBlock.jsx';
 import axios from 'axios';
 import InfiniteScroll from "react-infinite-scroll-component";
+
+import { FaCommentAlt } from 'react-icons/fa';
+
+import CommentsFeed from './CommentsFeed.jsx';
+import CommentForm from './CommentForm.jsx';
 
 
 const CommentTop = styled.div`
@@ -50,6 +53,7 @@ class Comments extends React.Component {
   }
 
   getComments() {
+    // console.log('GET comments')
     axios.get('http://localhost:3005/comments')
     .then((result) => {
       // console.log(result)
@@ -82,6 +86,7 @@ class Comments extends React.Component {
   render() {
     return (
       <div>
+        <CommentForm getComments={this.getComments} />
         <CommentTop><FaCommentAlt /> {this.state.comments.length} comments</CommentTop>
         <CommentFeed>
           <InfiniteScroll
@@ -96,7 +101,7 @@ class Comments extends React.Component {
             }
           >
             {this.state.shownComments.map((comment) => (
-              <CommentBlock key={comment.id} comment={comment} />
+              <CommentsFeed key={comment.id} comment={comment} />
             ))}
           </InfiniteScroll>
         </CommentFeed>
