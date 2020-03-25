@@ -5,8 +5,7 @@ import svg from 'react-inlinesvg';
 
 import { TiHeart, TiArrowLoop } from 'react-icons/ti';
 import { FaShareSquare } from 'react-icons/fa';
-import { MdPlaylistPlay, MdPlayArrow } from 'react-icons/md';
-import { GoThreeBars } from 'react-icons/go';
+import { MdPlaylistPlay, MdPlayArrow, MdMoreHoriz } from 'react-icons/md';
 
 const LikeBarBlock = styled.div`
   display: flex;
@@ -65,29 +64,59 @@ const Button = styled.div`
   height: 26px;
   margin: 0 3px;
   padding: 2px 11px 2px 10px;
-  border: 1px solid #e5e5e5;
   border-radius: 3px;
   background-color: #fff;
   cursor: pointer;
-  color: #333;
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: 100;
   line-height: 20px;
   white-space: nowrap;
   text-align: center;
   vertical-align: center;
   box-sizing: border-box;
 
-  &:hover {
-    border: 1px solid #999;
-  }
 `
 
 const ShareButton = styled(Button)`
-  font-size: 11px;
+  font-size: 12px;
+  color: ${(props) => props.shareClicked ? "#f50" : "#333" };
+  border: ${(props) => props.shareClicked ? "1px solid #f50" : "1px solid #e5e5e5" };
+  &:hover {
+    border: ${(props) => props.shareClicked ? "1px solid #f50" : "1px solid #999" };
+  }
+`
+const HeartButton = styled(Button)`
+  color: ${(props) => props.heartClicked ? "#f50" : "#333" };
+  border: ${(props) => props.heartClicked ? "1px solid #f50" : "1px solid #e5e5e5" };
+  &:hover {
+    border: ${(props) => props.heartClicked ? "1px solid #f50" : "1px solid #999" };
+  }
+`
+const RepostButton = styled(Button)`
+  color: ${(props) => props.repostClicked ? "#f50" : "#333" };
+  border: ${(props) => props.repostClicked ? "1px solid #f50" : "1px solid #e5e5e5" };
+  &:hover {
+    border: ${(props) => props.repostClicked ? "1px solid #f50" : "1px solid #999" };
+  }
+`
+const NextupButton = styled(Button)`
+  color: ${(props) => props.nextupClicked ? "#f50" : "#333" };
+  border: ${(props) => props.nextupClicked ? "1px solid #f50" : "1px solid #e5e5e5" };
+  &:hover {
+    border: ${(props) => props.nextupClicked ? "1px solid #f50" : "1px solid #999" };
+  }
+`
+const MenuButton = styled(Button)`
+  color: ${(props) => props.menuClicked ? "#f50" : "#333" };
+  border: ${(props) => props.menuClicked ? "1px solid #f50" : "1px solid #e5e5e5" };
+  &:hover {
+    border: ${(props) => props.menuClicked ? "1px solid #f50" : "1px solid #999" };
+  }
 `
 
 const ButtonText = styled.span`
-  font-size: 12px;
+  font-size: 13px;
+  margin-left: 3px;
 `
 
 class LikeBar extends React.Component {
@@ -96,8 +125,18 @@ class LikeBar extends React.Component {
     this.state = {
       playCount: 0,
       likes: 0,
-      reposts: 0
+      reposts: 0,
+      heartClicked: false,
+      repostClicked: false,
+      shareClicked: false,
+      nextupClicked: false,
+      menuClicked: false
     }
+    this.handleHeartClick = this.handleHeartClick.bind(this);
+    this.handleShareClick = this.handleShareClick.bind(this);
+    this.handleRepostClick = this.handleRepostClick.bind(this);
+    this.handleNextupClick = this.handleNextupClick.bind(this);
+    this.handleMenuClick = this.handleMenuClick.bind(this);
   }
 
   componentDidMount() {
@@ -108,14 +147,54 @@ class LikeBar extends React.Component {
     })
   }
 
+  handleHeartClick() {
+    this.setState({
+      heartClicked: !this.state.heartClicked
+    })
+  }
+
+  handleRepostClick() {
+    this.setState({
+      repostClicked: !this.state.repostClicked
+    })
+  }
+
+  handleShareClick() {
+    this.setState({
+      shareClicked: !this.state.shareClicked
+    })
+  }
+
+  handleNextupClick() {
+    this.setState({
+      nextupClicked: !this.state.nextupClicked
+    })
+  }
+
+  handleMenuClick() {
+    this.setState({
+      menuClicked: !this.state.menuClicked
+    })
+  }
+
   render() {
     return (<LikeBarBlock>
       <ButtonsLeft>
-        <Button id="heart"><TiHeart /><ButtonText> Like</ButtonText></Button>
-        <Button id="repost"><TiArrowLoop /><ButtonText> Repost</ButtonText></Button>
-        <ShareButton id="share"><FaShareSquare /><ButtonText> Share</ButtonText></ShareButton>
-        <Button id="nextup"><MdPlaylistPlay /><ButtonText> Add to Next Up</ButtonText></Button>
-        <Button id="menu"><GoThreeBars /><ButtonText> More</ButtonText></Button>
+        <HeartButton id="heart" heartClicked={this.state.heartClicked} onClick={this.handleHeartClick}>
+          <TiHeart /><ButtonText> Like</ButtonText>
+        </HeartButton>
+        <RepostButton id="repost" repostClicked={this.state.repostClicked} onClick={this.handleRepostClick}>
+          <TiArrowLoop /><ButtonText> Repost</ButtonText>
+        </RepostButton>
+        <ShareButton id="share" shareClicked={this.state.shareClicked} onClick={this.handleShareClick}>
+          <FaShareSquare /><ButtonText> Share</ButtonText>
+        </ShareButton>
+        <NextupButton id="nextup" nextupClicked={this.state.nextupClicked} onClick={this.handleNextupClick}>
+          <MdPlaylistPlay /><ButtonText> Add to Next Up</ButtonText>
+        </NextupButton>
+        <MenuButton id="menu" menuClicked={this.state.menuClicked} onClick={this.handleMenuClick}>
+          <MdMoreHoriz /><ButtonText> More</ButtonText>
+        </MenuButton>
       </ButtonsLeft>
       <InfoRight>
         <InfoDiv><MdPlayArrow /> <Info>{ this.props.song.play_count }</Info></InfoDiv>
