@@ -11,7 +11,8 @@ import LikeBar from './LikeBar.jsx';
 import CommentForm from './CommentForm.jsx';
 
 const AppBody = styled.div`
-  width: 850px;
+  max-width: 850px;
+  min-width: 650px;
   color: #000;
   margin: 20px;
   padding: 0;
@@ -19,23 +20,6 @@ const AppBody = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-`
-
-const CommentFormBlock = styled.div`
-  width: inherit;
-  height: 40px;
-  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-  background-color: #f2f2f2;
-  border: 1px solid #e5e5e5;
-  color: #333;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  margin-bottom: 5px;
-  align-items: stretch;
 `
 
 const UserAvatar = styled.div`
@@ -72,11 +56,14 @@ const Left = styled.div`
 const Right = styled.div`
   font: 12px/1.3em Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   margin-top: 120px;
-  padding-left: 140px;
+  padding: 0;
   display: block;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 140px;
+  right: 0;
+  width: 100vw;
+  max-width: 710px;
 `
 
 class App extends React.Component {
@@ -90,7 +77,6 @@ class App extends React.Component {
     }
     this.getSong = this.getSong.bind(this);
     this.getArtist = this.getArtist.bind(this);
-    this.getComments = this.getComments.bind(this);
   }
 
   componentDidMount() {
@@ -120,83 +106,6 @@ class App extends React.Component {
       })
     })
   }
-
-<<<<<<< HEAD
-  handleInput(e) {
-    this.setState({
-      commentInput: e.target.value
-    })
-
-    if (e.key === 'Enter') {
-      this.setState({
-        commentInput: ''
-      })
-      this.handleSubmit(e)
-    }
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-
-      let newComment = {
-        user_name: 'ZeldaXOXO',
-        text: e.target.value
-      }
-      axios.post('/comments', newComment )
-        .then((result) => {
-          // console.log('Success: Posted comment')
-          this.getComments();
-        })
-        .catch((err) => {
-          console.log('Error: Post comment:', err)
-        })
-
-  }
-=======
-  getComments() {
-    axios.get('http://localhost:3000/comments')
-    .then((result) => {
-      // console.log(result)
-      this.setState({
-        comments: result.data
-      })
-    })
-    .catch((err) => {
-      console.log('Error: getComments', err)
-    })
-  }
-
-  // handleInput(e) {
-  //   this.setState({
-  //     commentInput: e.target.value
-  //   })
-
-  //   if (e.key === 'Enter') {
-  //     this.setState({
-  //       commentInput: ''
-  //     })
-  //     this.handleSubmit(e)
-  //   }
-  // }
-
-  // handleSubmit(e) {
-  //   e.preventDefault();
-
-  //     let newComment = {
-  //       user_name: 'ZeldaXOXO',
-  //       text: e.target.value
-  //     }
-  //     axios.post('/comments', newComment )
-  //       .then((result) => {
-  //         // console.log('Success: Posted comment')
-  //         this.getComments();
-  //       })
-  //       .catch((err) => {
-  //         console.log('Error: Post comment:', err)
-  //       })
-
-  // }
->>>>>>> master
 
   render() {
     return (<AppBody>

@@ -6,7 +6,8 @@ import axios from 'axios';
 
 
 const CommentFormBlock = styled.div`
-  width: inherit;
+  width: 100vw;
+  max-width: 850px;
   height: 40px;
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   background-color: #f2f2f2;

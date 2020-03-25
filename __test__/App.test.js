@@ -1,6 +1,5 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-// import { render } from '@testing-library/react';
 
 import { configure, shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -9,20 +8,11 @@ configure({ adapter: new Adapter() });
 import App from '../client/src/components/App.jsx';
 import axios from '../__mocks__/axios.js';
 
-jest.mock('axios');
-
 describe('Test to check Jest', () => {
   test('1 plus 1 equals 2', () => {
     expect(1 + 1).toBe(2);
   });
 });
-
-// describe('Renders components in DOM', () => {
-//   test('Renders comments', async () => {
-//     const wrapper = shallow(<App />);
-//     expect(wrapper.find(AppBody)).toHaveLength(1);
-//   })
-// });
 
 jest.mock('../client/src/components/Song', () => () => <div id="mockSong">mockSong</div>)
 jest.mock('../client/src/components/Artist', () => () => <div id="mockArtist">mockArtist</div>)
@@ -56,14 +46,14 @@ describe('App Component', () => {
   })
 })
 
+jest.mock('axios');
+
 describe('App Component', () => {
   describe('when rendered', () => {
-    it('should fetch comments', () => {
-      const getSpy = jest.spyOn(axios, 'comments.get');
-      const toDoListInstance = shallow(
-        <App />
-      );
-      expect(getSpy).toBeCalled();
+    it('should fetch artist description', () => {
+      const artistSpy = jest.spyOn(axios, 'get');
+      const appInstance = mount(<App />);
+      expect(artistSpy).toBeCalled();
     });
   });
 });

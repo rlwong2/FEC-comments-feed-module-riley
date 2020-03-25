@@ -4,21 +4,6 @@
   "description": "",
   "private": true,
   "main": "server/index.js",
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "bower_components",
-      "shared"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/assetsTransformer.js",
-      "\\.(css|less)$": "<rootDir>/assetsTransformer.js"
-    }
-  },
   "scripts": {
     "test": "jest --forceExit --runInBand --detectOpenHandles",
     "test2": "jest",
@@ -62,6 +47,7 @@
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "fs": "0.0.1-security",
+    "iconv-lite": "^0.5.1",
     "jest-cli": "^25.1.0",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",

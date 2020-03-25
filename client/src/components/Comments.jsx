@@ -16,6 +16,8 @@ const CommentTop = styled.div`
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 5px;
   margin-bottom: 18px;
+  width: 100vw;
+  max-width: 710px;
 `
 
 const CommentFeed = styled.li`
@@ -48,7 +50,6 @@ class Comments extends React.Component {
   }
 
   getComments() {
-    console.log('GET /comments')
     axios.get('http://localhost:3000/comments')
     .then((result) => {
       // console.log(result)
@@ -63,7 +64,6 @@ class Comments extends React.Component {
   }
 
   fetchMoreData() {
-    console.log('>>>>>> fetchMoreData')
     if (this.state.shownComments.length >= this.state.comments.length) {
       this.setState({ hasMore: false });
       return;

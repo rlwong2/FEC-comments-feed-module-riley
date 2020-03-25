@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import $ from 'jquery';
 import svg from 'react-inlinesvg';
 
-// import img from '../the1975thumb.jpg';
 import { IoMdPeople } from 'react-icons/io';
 import { MdPersonAdd, MdReportProblem } from 'react-icons/md';
 import { GiSoundWaves } from 'react-icons/gi';
+import { FaUserCheck } from 'react-icons/fa';
 
 
 const ArtistPanel = styled.div`
@@ -68,6 +68,7 @@ const Follow = styled.button`
   border: 1px solid #e5e5e5;
   border-radius: 3px;
   cursor: pointer;
+  overflow: hidde;
   white-space: nowrap;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   font-weight: 100;
@@ -86,17 +87,41 @@ const Report = styled.div`
   padding: 0;
 `
 
-const Artist = (props) => (
-  <ArtistPanel>
-    <Avatar />
-    <ArtistName>{props.artist.name}</ArtistName>
-    <ClickyBar>
-    <Followers><IoMdPeople /> {props.artist.followers_count}</Followers>
-    <Tracks><GiSoundWaves /> {props.artist.tracks_count}</Tracks>
-    </ClickyBar>
-    <Follow><MdPersonAdd />  Follow</Follow>
-    <Report><MdReportProblem /> Report</Report>
-  </ArtistPanel>
-)
+class Artist extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+       following: false,
+       followText: 'Follow'
+    }
+    this.toggleFollow = this.toggleFollow.bind(this);
+  }
+
+  toggleFollow () {
+    this.setState({
+      following: !this.state.following
+    })
+
+    this.setState({
+      followText: this.state.following ? 'Follow' : 'Following'
+    })
+
+  }
+
+  render() {
+    return (
+      <ArtistPanel>
+        <Avatar />
+        <ArtistName>{this.props.artist.name}</ArtistName>
+        <ClickyBar>
+        <Followers><IoMdPeople /> {this.props.artist.followers_count}</Followers>
+        <Tracks><GiSoundWaves /> {this.props.artist.tracks_count}</Tracks>
+        </ClickyBar>
+        <Follow id="follow-button" onClick={ this.toggleFollow }><MdPersonAdd />  { this.state.followText }</Follow>
+        <Report><MdReportProblem /> Report</Report>
+      </ArtistPanel>
+    )
+  }
+};
 
 export default Artist;
