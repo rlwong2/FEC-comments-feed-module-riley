@@ -16,23 +16,28 @@ FEC-Group-Zelda
 
 ## Usage
 
-> Some usage instructions
-
 ## Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
-- Node 6.13.0
-- etc
+- Node v12.14.0
 
 ## Development
 
 ### Installing Dependencies
 
-From within the root directory:
+> Install dependencies from package.json: npm init
 
-```sh
-npm install -g webpack
-npm install
-```
+### Setup MySQL Database
+
+> Setup database: npm run db-init
+> Seed database with fake comments data (100 entries): npm run seed
+
+### Bundle via Webpack with Babel
+
+> Build bundle.js via Webpack: npm run build
+
+### Run Server
+
+> Run server via nodemon: npm run server-dev
 
