@@ -57,18 +57,17 @@ const Tracks = styled.div`
 `
 const Follow = styled.button`
   min-width: 25px;
-  background-color: #f50;
-  border-color: #f50;
-  color: #fff;
+  background-color: ${(props) => props.following ? "none" : "#f50" };
+  border: ${(props) => props.following ? "1px solid #f50" : "1px solid #e5e5e5" };
+  color: ${(props) => props.following ? "#f50" : "#fff" };
   font-size: 11px;
-  padding: 2px 9px 2px 8 px;
+  padding: 2px 9px 2px 8px;
   margin: 0px;
   height: 22px;
   line-height: 16px;
-  border: 1px solid #e5e5e5;
   border-radius: 3px;
   cursor: pointer;
-  overflow: hidde;
+  overflow: hidden;
   white-space: nowrap;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   font-weight: 100;
@@ -92,7 +91,8 @@ class Artist extends React.Component {
     super(props);
     this.state = {
        following: false,
-       followText: 'Follow'
+       followText: 'Follow',
+       followIcon: <MdPersonAdd />
     }
     this.toggleFollow = this.toggleFollow.bind(this);
   }
@@ -103,7 +103,8 @@ class Artist extends React.Component {
     })
 
     this.setState({
-      followText: this.state.following ? 'Follow' : 'Following'
+      followText: this.state.following ? 'Follow' : 'Following',
+      followIcon: this.state.following ? <MdPersonAdd /> : <FaUserCheck />
     })
 
   }
@@ -117,7 +118,7 @@ class Artist extends React.Component {
         <Followers><IoMdPeople /> {this.props.artist.followers_count}</Followers>
         <Tracks><GiSoundWaves /> {this.props.artist.tracks_count}</Tracks>
         </ClickyBar>
-        <Follow id="follow-button" onClick={ this.toggleFollow }><MdPersonAdd />  { this.state.followText }</Follow>
+        <Follow id="follow-button" onClick={ this.toggleFollow } following={ this.state.following }>{ this.state.followIcon }  { this.state.followText }</Follow>
         <Report><MdReportProblem /> Report</Report>
       </ArtistPanel>
     )
