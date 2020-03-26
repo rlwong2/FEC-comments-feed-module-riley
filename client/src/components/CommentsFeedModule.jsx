@@ -18,7 +18,7 @@ const AppBody = styled.div`
   padding: 0;
   display: block;
   position: absolute;
-  top: 400;
+  top: 400px;
   left: 0;
 `
 
