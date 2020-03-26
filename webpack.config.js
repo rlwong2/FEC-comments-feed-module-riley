@@ -6,7 +6,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
   output: {
-    filename: 'commentsFeedBundle.js',
+    filename: 'bundle.js',
     path: DIST_DIR
   },
   module: {

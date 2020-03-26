@@ -1,25 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Description = styled.div`
+const SongDescription = styled.div`
+  height: 160px;
   font-size: 14px;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-  font-weight: 100;
+  font-weight: lighter;
   line-height: 1.3em;
 `
 
-const Bold = styled.p`
-  font-weight: 500;
+const Bold = styled.span`
+  font-weight: 600;
 `
 
 const Song = (props) => (
-  <Description data-testid="description">
-    <Bold>Release date: </Bold>
-    {props.song.release_date}
+  <SongDescription>
+    The 1975's new album Notes on a Conditional Form is out now!<br />
     <br />
-    <Bold>C-line: </Bold>
+    <Bold>Release date: </Bold><br />
+    {props.song.release_date}<br />
+    <br />
+    <Bold>C-line: </Bold><br />
     {props.song.c_line}
-  </Description>
+  </SongDescription>
 )
 
 export default Song;
