@@ -17,9 +17,7 @@ const AppBody = styled.div`
   margin: 20px;
   padding: 0;
   display: block;
-  position: absolute;
-  top: 400px;
-  left: 0;
+  border-right: 1px solid #f2f2f2;
 `
 
 const UserAvatar = styled.div`

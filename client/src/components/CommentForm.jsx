@@ -77,7 +77,7 @@ class CommentForm extends React.Component {
         user_name: 'ZeldaXOXO',
         text: e.target.value
       }
-      axios.post('/comments', newComment )
+      axios.post('http://localhost:3005/comments', newComment )
         .then((result) => {
           this.props.getComments();
         })
