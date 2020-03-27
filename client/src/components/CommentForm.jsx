@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const CommentFormBlock = styled.div`
   width: 100vw;
-  max-width: 850px;
+  max-width: 860px;
   height: 40px;
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   background-color: #f2f2f2;
@@ -77,7 +77,7 @@ class CommentForm extends React.Component {
         user_name: 'ZeldaXOXO',
         text: e.target.value
       }
-      axios.post('/comments', newComment )
+      axios.post('http://localhost:3005/comments', newComment )
         .then((result) => {
           this.props.getComments();
         })

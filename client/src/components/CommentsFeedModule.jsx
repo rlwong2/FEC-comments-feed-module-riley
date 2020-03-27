@@ -11,15 +11,14 @@ import LikeBar from './LikeBar.jsx';
 import CommentForm from './CommentForm.jsx';
 
 const AppBody = styled.div`
-  max-width: 850px;
-  min-width: 650px;
+  max-width: 860px;
+  min-width: 660px;
   color: #000;
   margin: 20px;
   padding: 0;
   display: block;
-  position: absolute;
-  top: 400;
-  left: 0;
+  padding-right: 20px;
+  border-left: 1px solid #f2f2f2;
 `
 
 const UserAvatar = styled.div`
