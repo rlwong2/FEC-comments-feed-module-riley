@@ -1,4 +1,7 @@
 const app = require('./index.js');
+const errorHandler = require('errorhandler');
+
+app.use(errorHandler({ dumpExceptions: true, showStack: true }));
 
 const port = process.env.NODE_ENV === 'test' ? 3001 : 3005;
 

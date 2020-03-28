@@ -6,7 +6,6 @@ const $ = require('jquery');
 const router = require('./router.js');
 const cors = require('cors')
 
-
 let app = express();
 
 app.use(cors());

@@ -58,20 +58,37 @@ class CommentsFeedModule extends React.Component {
       artist: {},
       song: {},
       comments: [],
-      commentInput: ''
+      commentInput: '',
+      url: 'http://localhost:3005/'
     }
     this.getSong = this.getSong.bind(this);
     this.getArtist = this.getArtist.bind(this);
     this.getComments = this.getComments.bind(this);
+    this.choosePort = this.choosePort.bind(this);
   }
 
   componentDidMount() {
+    this.choosePort();
     this.getSong();
     this.getArtist();
   }
 
+  choosePort() {
+    let local = false; // choose localhost or EC2
+
+    if (local) {
+      this.setState({
+        url: 'http://3.14.6.132:3005/'
+      })
+    } else {
+      this.setState({
+        url: 'http://localhost:3005/'
+      })
+    }
+  }
+
   getSong() {
-    axios.get('http://localhost:3005/song')
+    axios.get(`${this.state.url}song`)
     .then((result) => {
       // console.log(result)
       this.setState({
@@ -81,7 +98,7 @@ class CommentsFeedModule extends React.Component {
   }
 
   getArtist() {
-    axios.get('http://localhost:3005/artist')
+    axios.get(`${this.state.url}artist`)
     .then((result) => {
       // console.log(result)
       let obj = result.data;
@@ -94,9 +111,9 @@ class CommentsFeedModule extends React.Component {
   }
 
   getComments() {
-    axios.get('http://localhost:3005/comments')
+    axios.get(`${url}comments`)
     .then((result) => {
-      console.log(result)
+      // console.log(result)
       this.setState({
         comments: result.data
       })
@@ -111,7 +128,7 @@ class CommentsFeedModule extends React.Component {
       </Left>
       <Right>
         <Song song={this.state.song} />
-        <Comments getComments={this.getComments} />
+        <Comments url={this.state.url} getComments={this.getComments} />
       </Right>
     </AppBody>)
   }

@@ -54,7 +54,7 @@ class Comments extends React.Component {
 
   getComments() {
     // console.log('GET comments')
-    axios.get('http://localhost:3005/comments')
+    axios.get(`${this.props.url}comments`)
     .then((result) => {
       // console.log(result)
       this.setState({
@@ -68,7 +68,7 @@ class Comments extends React.Component {
   }
 
   fetchMoreData() {
-    console.log('fetching')
+    // console.log('fetching')
     if (this.state.shownComments.length >= this.state.comments.length) {
       this.setState({ hasMore: false });
       return;
@@ -87,7 +87,7 @@ class Comments extends React.Component {
   render() {
     return (
       <div>
-        <CommentForm getComments={this.getComments} />
+        <CommentForm url={this.props.url} getComments={this.getComments} />
         <CommentTop><FaCommentAlt /> {this.state.comments.length} comments</CommentTop>
         <CommentFeed>
           <InfiniteScroll

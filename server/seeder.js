@@ -6,14 +6,6 @@ const _colors = require('colors');
 
 const db = require('./db');
 
-// setup progress bar
-// const b1 = new cliProgress.SingleBar({
-//   format: 'Progress |' + _colors.cyan('{bar}') + '| {percentage}% || {value}/{total} Chunks || Speed: {speed}',
-//   barCompleteChar: '\u2588',
-//   barIncompleteChar: '\u2591',
-//   hideCursor: true
-// });
-
 
 let fakeArtist = function () {
     db.Artist.create({

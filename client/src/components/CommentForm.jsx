@@ -51,7 +51,7 @@ class CommentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      commentInput: ''
+      commentInput: '',
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -77,14 +77,13 @@ class CommentForm extends React.Component {
         user_name: 'ZeldaXOXO',
         text: e.target.value
       }
-      axios.post('http://localhost:3005/comments', newComment )
+      axios.post(`${this.props.url}comments`, newComment )
         .then((result) => {
           this.props.getComments();
         })
         .catch((err) => {
           console.log('Error: Post comment:', err)
         })
-
   }
 
   render() {
