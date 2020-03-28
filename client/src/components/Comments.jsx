@@ -53,8 +53,8 @@ class Comments extends React.Component {
   }
 
   getComments() {
-    // console.log('GET comments')
-    axios.get(`${this.props.url}comments`)
+    console.log(this.props.url + 'comments')
+    axios.get(this.props.url + 'comments')
     .then((result) => {
       // console.log(result)
       this.setState({

@@ -88,9 +88,10 @@ class CommentsFeedModule extends React.Component {
   }
 
   getSong() {
-    axios.get(`${this.state.url}song`)
+    console.log(this.state.url + 'song')
+    axios.get(this.state.url + 'song')
     .then((result) => {
-      // console.log(result)
+      console.log(result)
       this.setState({
         song: result.data
       })
@@ -98,7 +99,8 @@ class CommentsFeedModule extends React.Component {
   }
 
   getArtist() {
-    axios.get(`${this.state.url}artist`)
+    // console.log(this.state.url + 'artist')
+    axios.get(this.state.url + 'artist')
     .then((result) => {
       // console.log(result)
       let obj = result.data;
@@ -111,7 +113,8 @@ class CommentsFeedModule extends React.Component {
   }
 
   getComments() {
-    axios.get(`${url}comments`)
+    // console.log(this.state.url + 'comments')
+    axios.get(this.state.url + 'comments')
     .then((result) => {
       // console.log(result)
       this.setState({

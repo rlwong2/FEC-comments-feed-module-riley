@@ -35,8 +35,8 @@ let fakeSong = function() {
       description: '',
       released_by: '',
       release_date: '24 October 2019',
-      p_line: '℗ 2020 Dirty Hit, under exclusive licence to Polydor Records and Interscope Records',
-      c_line: '© 2019 Dirty Hit, under exclusive licence to Polydor Records and Interscope Records',
+      p_line: '2020 Dirty Hit, under exclusive licence to Polydor Records and Interscope Records',
+      c_line: '2019 Dirty Hit, under exclusive licence to Polydor Records and Interscope Records',
       hashtags: ''
     })
     .then((message) => {
