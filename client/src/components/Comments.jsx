@@ -68,6 +68,7 @@ class Comments extends React.Component {
   }
 
   fetchMoreData() {
+    console.log('fetching')
     if (this.state.shownComments.length >= this.state.comments.length) {
       this.setState({ hasMore: false });
       return;
