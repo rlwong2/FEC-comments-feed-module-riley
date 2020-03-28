@@ -76,7 +76,7 @@ class CommentsFeedModule extends React.Component {
   choosePort() {
     let local = false; // choose localhost or EC2
 
-    if (local) {
+    if (!local) {
       this.setState({
         url: 'http://3.14.6.132:3005/'
       })
