@@ -59,7 +59,7 @@ class CommentsFeedModule extends React.Component {
       song: {},
       comments: [],
       commentInput: '',
-      url: 'http://localhost:3005/'
+      url: 'http://3.14.6.132:3005/'
     }
     this.getSong = this.getSong.bind(this);
     this.getArtist = this.getArtist.bind(this);
