@@ -6,7 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import { FaCommentAlt } from 'react-icons/fa';
 
-import CommentsFeed from './CommentsFeed.jsx';
+import CommentEntry from './CommentEntry.jsx';
 import CommentForm from './CommentForm.jsx';
 
 
@@ -20,7 +20,7 @@ const CommentTop = styled.div`
   padding-bottom: 5px;
   margin-bottom: 18px;
   width: 100vw;
-  max-width: 710px;
+  max-width: 685px;
 `
 
 const CommentFeed = styled.li`
@@ -102,7 +102,7 @@ class Comments extends React.Component {
             }
           >
             {this.state.shownComments.map((comment) => (
-              <CommentsFeed key={comment.id} comment={comment} />
+                <CommentEntry key={comment.id} comment={comment} />
             ))}
           </InfiniteScroll>
         </CommentFeed>

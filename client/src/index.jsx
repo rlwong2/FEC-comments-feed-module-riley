@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import CommentsFeedModule from './components/CommentsFeedModule.jsx';
+import App from './components/App.jsx';
 
-ReactDOM.render(<CommentsFeedModule />, document.getElementById('CommentsFeedModule'));
+ReactDOM.render(<App />, document.getElementById('CommentsFeedModule'));

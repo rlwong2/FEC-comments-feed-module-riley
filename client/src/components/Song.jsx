@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const SongDescription = styled.div`
-  height: 160px;
+  height: 120px;
   font-size: 14px;
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   font-weight: lighter;

@@ -11,13 +11,16 @@ import LikeBar from './LikeBar.jsx';
 import CommentForm from './CommentForm.jsx';
 
 const AppBody = styled.div`
-  max-width: 850px;
-  min-width: 650px;
+  max-width: 845px;
+  min-width: 640px;
   color: #000;
-  margin: 20px;
-  padding: 0;
+  margin: 0;
+  padding: 20px;
   display: block;
   border-right: 1px solid #f2f2f2;
+  height: 100vh;
+  z-index: -1;
+  background-color: #ffffff;
 `
 
 const UserAvatar = styled.div`
@@ -30,28 +33,28 @@ const UserAvatar = styled.div`
 
 const Left = styled.div`
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-  margin-top: 110px;
-  padding: 0;
+  margin-top: 60px;
+  padding: 0 20px;
   display: block;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
 `
 
 const Right = styled.div`
   font: 12px/1.3em Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-  margin-top: 120px;
-  padding: 0;
+  margin-top: 60px;
+  padding: 0 20px 20px 20px;
   display: block;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 140px;
   right: 0;
   width: 100vw;
-  max-width: 710px;
+  max-width: 685px;
 `
 
-class CommentsFeedModule extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -88,7 +91,7 @@ class CommentsFeedModule extends React.Component {
   }
 
   getSong() {
-    console.log(this.state.url + 'song')
+    // console.log(this.state.url + 'song')
     axios.get(this.state.url + 'song')
     .then((result) => {
       console.log(result)
@@ -137,4 +140,4 @@ class CommentsFeedModule extends React.Component {
   }
 }
 
-export default CommentsFeedModule;
+export default App;

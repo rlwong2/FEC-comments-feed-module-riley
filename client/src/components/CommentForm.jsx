@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const CommentFormBlock = styled.div`
   width: 100vw;
-  max-width: 850px;
+  max-width: 845px;
   height: 40px;
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   background-color: #f2f2f2;
@@ -22,7 +22,7 @@ const CommentFormBlock = styled.div`
   margin-bottom: 5px;
   align-items: stretch;
   position: absolute;
-  top: -120px;
+  top: -110px;
   left: -140px;
 `
 
