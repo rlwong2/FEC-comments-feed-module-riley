@@ -11,13 +11,21 @@ import LikeBar from './LikeBar.jsx';
 import CommentForm from './CommentForm.jsx';
 
 const AppBody = styled.div`
+<<<<<<< HEAD:client/src/components/CommentsFeedModule.jsx
   max-width: 860px;
   min-width: 660px;
+=======
+  max-width: 845px;
+  min-width: 640px;
+>>>>>>> d161d7ed83e704cdfca47651bfb8a7952f8cc889:client/src/components/App.jsx
   color: #000;
-  margin: 20px;
-  padding: 0;
+  margin: 0;
+  padding: 20px;
   display: block;
   border-right: 1px solid #f2f2f2;
+  height: 100vh;
+  z-index: -1;
+  background-color: #ffffff;
 `
 
 const UserAvatar = styled.div`
@@ -30,50 +38,68 @@ const UserAvatar = styled.div`
 
 const Left = styled.div`
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-  margin-top: 110px;
-  padding: 0;
+  margin-top: 60px;
+  padding: 0 20px;
   display: block;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
 `
 
 const Right = styled.div`
   font: 12px/1.3em Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-  margin-top: 120px;
-  padding: 0;
+  margin-top: 60px;
+  padding: 0 20px 20px 20px;
   display: block;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 140px;
   right: 0;
   width: 100vw;
-  max-width: 710px;
+  max-width: 685px;
 `
 
-class CommentsFeedModule extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       artist: {},
       song: {},
       comments: [],
-      commentInput: ''
+      commentInput: '',
+      url: 'http://3.14.6.132:3005/'
     }
     this.getSong = this.getSong.bind(this);
     this.getArtist = this.getArtist.bind(this);
     this.getComments = this.getComments.bind(this);
+    this.choosePort = this.choosePort.bind(this);
   }
 
   componentDidMount() {
+    this.choosePort();
     this.getSong();
     this.getArtist();
   }
 
+  choosePort() {
+    let local = false; // choose localhost or EC2
+
+    if (!local) {
+      this.setState({
+        url: 'http://3.14.6.132:3005/'
+      })
+    } else {
+      this.setState({
+        url: 'http://localhost:3005/'
+      })
+    }
+  }
+
   getSong() {
-    axios.get('http://localhost:3005/song')
+    // console.log(this.state.url + 'song')
+    axios.get(this.state.url + 'song')
     .then((result) => {
-      // console.log(result)
+      console.log(result)
       this.setState({
         song: result.data
       })
@@ -81,7 +107,8 @@ class CommentsFeedModule extends React.Component {
   }
 
   getArtist() {
-    axios.get('http://localhost:3005/artist')
+    // console.log(this.state.url + 'artist')
+    axios.get(this.state.url + 'artist')
     .then((result) => {
       // console.log(result)
       let obj = result.data;
@@ -94,9 +121,10 @@ class CommentsFeedModule extends React.Component {
   }
 
   getComments() {
-    axios.get('http://localhost:3005/comments')
+    // console.log(this.state.url + 'comments')
+    axios.get(this.state.url + 'comments')
     .then((result) => {
-      console.log(result)
+      // console.log(result)
       this.setState({
         comments: result.data
       })
@@ -111,10 +139,10 @@ class CommentsFeedModule extends React.Component {
       </Left>
       <Right>
         <Song song={this.state.song} />
-        <Comments getComments={this.getComments} />
+        <Comments url={this.state.url} getComments={this.getComments} />
       </Right>
     </AppBody>)
   }
 }
 
-export default CommentsFeedModule;
+export default App;

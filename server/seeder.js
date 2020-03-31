@@ -6,14 +6,6 @@ const _colors = require('colors');
 
 const db = require('./db');
 
-// setup progress bar
-// const b1 = new cliProgress.SingleBar({
-//   format: 'Progress |' + _colors.cyan('{bar}') + '| {percentage}% || {value}/{total} Chunks || Speed: {speed}',
-//   barCompleteChar: '\u2588',
-//   barIncompleteChar: '\u2591',
-//   hideCursor: true
-// });
-
 
 let fakeArtist = function () {
     db.Artist.create({
@@ -43,8 +35,8 @@ let fakeSong = function() {
       description: '',
       released_by: '',
       release_date: '24 October 2019',
-      p_line: '℗ 2020 Dirty Hit, under exclusive licence to Polydor Records and Interscope Records',
-      c_line: '© 2019 Dirty Hit, under exclusive licence to Polydor Records and Interscope Records',
+      p_line: '2020 Dirty Hit, under exclusive licence to Polydor Records and Interscope Records',
+      c_line: '2019 Dirty Hit, under exclusive licence to Polydor Records and Interscope Records',
       hashtags: ''
     })
     .then((message) => {

@@ -8,16 +8,21 @@ const CommentFlex = styled.div`
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin: 0;
+  padding: 0 0 20px 0;
   width: 100vw;
-  max-width: 710px;
+  max-width: 685px;
+  background-color: #ffffff;
+  position: relative;
+  top: 0;
+  left: 0;
 `
 
 const LeftContainer = styled.div`
-display: flex;
-justify-content: flex-start;
-flex-direction: row;
-flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
 `
 
 const AvatarMini = styled.div`
@@ -54,7 +59,14 @@ const Ago = styled.div`
   width: 100px;
 `
 
-const CommentsFeed = (props) => {
+const WhiteDiv = styled.div`
+  position: relative;
+  left: 0;
+  background-color: #ffffff;
+  width: 1240px;
+`
+
+const CommentEntry = (props) => {
   const style = {
     backgroundImage: "url(" + props.comment.user_profile_pic + ")"
   }
@@ -67,7 +79,8 @@ const CommentsFeed = (props) => {
       </UserNameText>
     </LeftContainer>
     <Ago>{ moment(props.comment.createdAt).fromNow() }</Ago>
+    <WhiteDiv key={props.comment.id} />
   </CommentFlex>
 )}
 
-export default CommentsFeed;
+export default CommentEntry;

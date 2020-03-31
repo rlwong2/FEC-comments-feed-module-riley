@@ -13,7 +13,7 @@ const LikeBarBlock = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   min-height: 33px;
-  width: 850px;
+  width: 845px;
   margin: 0;
   padding: 0;
   font-weight: 100;
@@ -23,8 +23,8 @@ const LikeBarBlock = styled.div`
   align-items: baseline;
   padding-bottom: 5px;
   border-bottom: 1px solid #f2f2f2;
-  position: absolute;
-  top: 50px;
+  position: relative;
+  top: 40px;
   left: 0;
 `
 

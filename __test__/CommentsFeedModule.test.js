@@ -5,7 +5,7 @@ import { configure, shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
-import CommentsFeedModule from '../client/src/components/CommentsFeedModule.jsx';
+import App from '../client/src/components/App.jsx';
 import axios from '../__mocks__/axios.js';
 
 describe('Test to check Jest', () => {
@@ -23,25 +23,25 @@ jest.mock('../client/src/components/LikeBar', () => () => <div id="mockLikeBar">
 describe('App Component', () => {
   it('Should return Song component', () => {
 
-    const wrapper = mount(<CommentsFeedModule />)
+    const wrapper = mount(<App />)
     expect(wrapper.find('#mockSong').length).toEqual(1)
   })
 
   it('Should return Artist component', () => {
 
-    const wrapper = mount(<CommentsFeedModule />)
+    const wrapper = mount(<App />)
     expect(wrapper.find('#mockArtist').length).toEqual(1)
   })
 
   it('Should return Comments component', () => {
 
-    const wrapper = mount(<CommentsFeedModule />)
+    const wrapper = mount(<App />)
     expect(wrapper.find('#mockComments').length).toEqual(1)
   })
 
   it('Should return LikeBar component', () => {
 
-    const wrapper = mount(<CommentsFeedModule />)
+    const wrapper = mount(<App />)
     expect(wrapper.find('#mockLikeBar').length).toEqual(1)
   })
 })
@@ -52,7 +52,7 @@ describe('App Component', () => {
   describe('when rendered', () => {
     it('should fetch artist description', () => {
       const artistSpy = jest.spyOn(axios, 'get');
-      const appInstance = mount(<CommentsFeedModule />);
+      const appInstance = mount(<App />);
       expect(artistSpy).toBeCalled();
     });
   });

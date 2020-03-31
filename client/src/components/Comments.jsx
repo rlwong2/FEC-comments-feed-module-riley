@@ -6,7 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import { FaCommentAlt } from 'react-icons/fa';
 
-import CommentsFeed from './CommentsFeed.jsx';
+import CommentEntry from './CommentEntry.jsx';
 import CommentForm from './CommentForm.jsx';
 
 
@@ -20,7 +20,7 @@ const CommentTop = styled.div`
   padding-bottom: 5px;
   margin-bottom: 18px;
   width: 100vw;
-  max-width: 710px;
+  max-width: 685px;
 `
 
 const CommentFeed = styled.li`
@@ -53,8 +53,8 @@ class Comments extends React.Component {
   }
 
   getComments() {
-    // console.log('GET comments')
-    axios.get('http://localhost:3005/comments')
+    console.log(this.props.url + 'comments')
+    axios.get(this.props.url + 'comments')
     .then((result) => {
       // console.log(result)
       this.setState({
@@ -68,6 +68,7 @@ class Comments extends React.Component {
   }
 
   fetchMoreData() {
+    // console.log('fetching')
     if (this.state.shownComments.length >= this.state.comments.length) {
       this.setState({ hasMore: false });
       return;
@@ -86,7 +87,7 @@ class Comments extends React.Component {
   render() {
     return (
       <div>
-        <CommentForm getComments={this.getComments} />
+        <CommentForm url={this.props.url} getComments={this.getComments} />
         <CommentTop><FaCommentAlt /> {this.state.comments.length} comments</CommentTop>
         <CommentFeed>
           <InfiniteScroll
@@ -101,7 +102,7 @@ class Comments extends React.Component {
             }
           >
             {this.state.shownComments.map((comment) => (
-              <CommentsFeed key={comment.id} comment={comment} />
+                <CommentEntry key={comment.id} comment={comment} />
             ))}
           </InfiniteScroll>
         </CommentFeed>

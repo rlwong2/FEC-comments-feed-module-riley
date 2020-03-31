@@ -7,7 +7,11 @@ import axios from 'axios';
 
 const CommentFormBlock = styled.div`
   width: 100vw;
+<<<<<<< HEAD
   max-width: 860px;
+=======
+  max-width: 845px;
+>>>>>>> d161d7ed83e704cdfca47651bfb8a7952f8cc889
   height: 40px;
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   background-color: #f2f2f2;
@@ -22,7 +26,7 @@ const CommentFormBlock = styled.div`
   margin-bottom: 5px;
   align-items: stretch;
   position: absolute;
-  top: -120px;
+  top: -110px;
   left: -140px;
 `
 
@@ -51,7 +55,7 @@ class CommentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      commentInput: ''
+      commentInput: '',
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -77,14 +81,13 @@ class CommentForm extends React.Component {
         user_name: 'ZeldaXOXO',
         text: e.target.value
       }
-      axios.post('http://localhost:3005/comments', newComment )
+      axios.post(`${this.props.url}comments`, newComment )
         .then((result) => {
           this.props.getComments();
         })
         .catch((err) => {
           console.log('Error: Post comment:', err)
         })
-
   }
 
   render() {
